@@ -310,7 +310,18 @@ button { position: relative; overflow: hidden; font-family: 'Orbitron', monospac
 .footer span{ color:var(--gold)!important; }
 .toast{ position:fixed; bottom:25px; left:50%; transform:translateX(-50%) translateY(100px); background:linear-gradient(135deg, rgba(255,193,7,.13), rgba(155,92,255,.12)); backdrop-filter:blur(15px); border:1px solid var(--gold); color:#fff; padding:12px 22px; border-radius:9px; font-size:11px; font-weight:850; letter-spacing:.5px; opacity:0; pointer-events:none; transition:.3s; box-shadow:0 0 12px rgba(255,193,7,.3), 0 0 30px rgba(155,92,255,.1); z-index:9999; }
 .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+.bank-btn{ background:#da2c38; color:#fff; }
+.bank-default{ background:#34312a; color:#fff; }
 
+/* Font Bank Tab 3 putih */
+#tab3 .bank-badge{ color:#fff !important; }
+/* Kecualikan bank berlatar terang → tetap gelap */
+#tab3 .bank-bni,
+#tab3 .bank-seabank,
+#tab3 .bank-dana,
+#tab3 .bank-gopay{ color:#001015 !important; }
+
+.empty-row{ text-align:center; color:#655f50; padding:45px; font-style:italic; letter-spacing:.5px; }
 /* ================================================================
    [E] RESPONSIVE
 ================================================================ */
