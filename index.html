@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SC DEPO BCA + KACAU</title>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+:root{
+    /* === Neon (Tab 1 - SC DEPO BCA) === */
+    --nc:#00f0ff; --nm:#ff00de; --nl:#39ff14; --na:#ffae00; --np:#ff1493;
+    --bg:#020208; --panel:rgba(4,4,14,0.92);
+    /* === Gold (Tab 2 - KACAU) === */
+    --gold:#ffd54a; --gold2:#ffb300; --gold3:#fff1a8; --amber:#ff8f00;
+    --purple:#9b5cff; --green:#4dff9a; --red:#ff4d67;
+    --gpanel:rgba(18,16,10,.88); --gtext:#f5f1df; --gmuted:#8e8975; --gline:rgba(255,193,7,.25);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { min-height: 100vh; color: #b0b8d0; font-family: 'Rajdhani', sans-serif; background: var(--bg); overflow-x: hidden; }
+
+/* ================= LATAR NEON (global) ================= */
+.wallpaper { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: var(--bg); }
+.wallpaper img { display: block; width: 100%; height: 100%; object-fit: cover; filter: contrast(1.4) saturate(1.8) brightness(0,99); }
+.wallpaper::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2,2,8,0.25) 0%, rgba(2,2,8,0.15) 30%, rgba(2,2,8,0.35) 100%, rgba(2,2,8,0.85) 100%), linear-gradient(90deg, rgba(0,240,255,0.04), transparent 25%, transparent 75%, rgba(255,0,222,0.04)); }
+.wallpaper::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 100px rgba(0,240,255,0.05), inset 0 0 180px rgba(255,0,222,0.03), inset 0 0 250px rgba(2,2,8,0.35); }
+.nebula { position: fixed; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(ellipse 80% 50% at 30% 20%, rgba(0,80,255,0.04), transparent), radial-gradient(ellipse 60% 40% at 70% 30%, rgba(255,0,222,0.03), transparent), radial-gradient(ellipse 90% 60% at 50% 80%, rgba(0,240,255,0.02), transparent); }
+.aurora { position: fixed; top: -20%; left: -10%; right: -10%; height: 60%; z-index: 1; pointer-events: none; opacity: 0.3; background: linear-gradient(180deg, transparent, rgba(0,240,255,0.03) 20%, rgba(255,0,222,0.02) 40%, rgba(57,255,20,0.01) 60%, transparent 80%); filter: blur(40px); animation: auroraW 12s ease-in-out infinite alternate; }
+@keyframes auroraW { 0% { transform: translateX(-5%) skewX(-2deg) scaleY(1); } 50% { transform: translateX(3%) skewX(1deg) scaleY(1.1); } 100% { transform: translateX(5%) skewX(2deg) scaleY(0.95); } }
+.matrix { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.mcol { position: absolute; top: -100%; font-family: Consolas, monospace; font-size: 11px; line-height: 1; color: var(--nc); writing-mode: vertical-rl; text-orientation: upright; animation: mFall linear infinite; }
+@keyframes mFall { 0% { transform: translateY(-100%); } 100% { transform: translateY(200vh); } }
+.road-wrap { position: fixed; bottom: 0; left: 0; right: 0; height: 140px; z-index: 1; pointer-events: none; overflow: hidden; perspective: 350px; }
+.road { position: absolute; bottom: 0; left: -15%; right: -15%; height: 120px; background: linear-gradient(180deg, transparent 0%, rgba(6,6,15,0.7) 35%, rgba(8,8,26,0.85) 100%); transform: rotateX(58deg); transform-origin: bottom center; }
+.road::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 48px, rgba(0,240,255,0.04) 48px, rgba(0,240,255,0.04) 50px), repeating-linear-gradient(90deg, transparent, transparent 48px, rgba(0,240,255,0.02) 48px, rgba(0,240,255,0.02) 50px); animation: rScr 1s linear infinite; }
+@keyframes rScr { 0% { transform: translateY(0); } 100% { transform: translateY(50px); } }
+.road::after { content: ""; position: absolute; top: 8%; left: 50%; width: 3px; height: 400%; transform: translateX(-50%); background: repeating-linear-gradient(180deg, var(--na), var(--na) 18px, transparent 18px, transparent 55px); animation: lnS 0.6s linear infinite; box-shadow: 0 0 8px rgba(255,174,0,0.4); }
+@keyframes lnS { 0% { transform: translateX(-50%) translateY(0); } 100% { transform: translateX(-50%) translateY(55px); } }
+.spdln { position: absolute; height: 1px; border-radius: 1px; animation: spF linear infinite; }
+@keyframes spF { 0% { transform: translateX(-100vw) scaleX(0.3); opacity: 0; } 20% { opacity: 1; transform: scaleX(1); } 80% { opacity: 0.8; } 100% { transform: translateX(100vw) scaleX(0.3); opacity: 0; } }
+.fog { position: fixed; bottom: 60px; left: -20%; right: -20%; height: 80px; z-index: 2; pointer-events: none; background: linear-gradient(180deg, transparent, rgba(0,240,255,0.008) 40%, rgba(255,0,222,0.005) 60%, transparent); filter: blur(18px); animation: fogD 15s ease-in-out infinite alternate; }
+@keyframes fogD { 0% { transform: translateX(-5%); } 100% { transform: translateX(5%); } }
+.ltng { position: fixed; inset: 0; z-index: 3; pointer-events: none; opacity: 0; transition: opacity 0.06s; }
+.ltng.on { opacity: 1; background: rgba(200,220,255,0.03); }
+.embers { position: fixed; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
+.embr { position: absolute; border-radius: 50%; animation: eRi linear infinite; }
+@keyframes eRi { 0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; } 10% { opacity: 1; } 50% { transform: translateY(-50vh) translateX(20px) scale(0.7); opacity: 0.7; } 100% { transform: translateY(-105vh) translateX(-10px) scale(0.2); opacity: 0; } }
+
+/* Portal emas — hanya tampil saat Tab KACAU aktif */
+.gold-portal { position: fixed; width: 620px; height: 620px; left: 50%; top: 50%; transform: translate(-50%,-50%); pointer-events: none; z-index: 1; border: 1px solid rgba(255,193,7,.07); border-radius: 50%; box-shadow: 0 0 100px rgba(255,193,7,.035), 0 0 220px rgba(155,92,255,.025), inset 0 0 120px rgba(255,193,7,.025); animation: portal 14s linear infinite; display: none; }
+body.tab2-on .gold-portal { display: block; }
+@keyframes portal { 0% { transform: translate(-50%,-50%) rotate(0deg) scale(.88); } 50% { transform: translate(-50%,-50%) rotate(180deg) scale(1.04); } 100% { transform: translate(-50%,-50%) rotate(360deg) scale(.88); } }
+
+.content { position: relative; z-index: 4; width: min(1160px, 100%); margin: 0 auto; padding: 24px 20px 160px; }
+
+/* ================= TAB BAR ================= */
+.tabbar { position: relative; display: flex; gap: 8px; margin-bottom: 22px; padding: 8px; background: var(--panel); border: 1px solid rgba(0,240,255,.1); border-radius: 14px; }
+.tabbar::after { content: ""; position: absolute; bottom: 0; left: 2%; right: 2%; height: 2px; background: linear-gradient(90deg, transparent, var(--nc), var(--nm), var(--nl), var(--na), var(--np), var(--nc), transparent); background-size: 300% auto; animation: stF 2s linear infinite; box-shadow: 0 0 10px var(--nc), 0 0 25px rgba(0,240,255,0.2); }
+.tab-btn { flex: 1; font-family: 'Orbitron', monospace; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 14px 10px; border-radius: 9px; cursor: pointer; background: rgba(2,2,8,.6); border: 1px solid rgba(0,240,255,.08); color: #5a6480; transition: .3s; }
+.tab-btn:hover { color: #9aa4c0; border-color: rgba(0,240,255,.3); background: rgba(0,240,255,.05); }
+.tab-btn.active { color: var(--nc); border-color: var(--nc); background: linear-gradient(135deg, rgba(0,240,255,.12), rgba(255,0,222,.10)); box-shadow: 0 0 16px rgba(0,240,255,.25), inset 0 0 12px rgba(0,240,255,.05); text-shadow: 0 0 10px rgba(0,240,255,.6); }
+.tab-btn.tgold.active { color: var(--gold); border-color: var(--gold); background: linear-gradient(135deg, rgba(255,193,7,.14), rgba(255,143,0,.10)); box-shadow: 0 0 16px rgba(255,193,7,.3), inset 0 0 12px rgba(255,193,7,.06); text-shadow: 0 0 10px rgba(255,193,7,.6); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; animation: tabIn .45s ease; }
+@keyframes tabIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ================= TAB 1 : SC DEPO BCA (NEON) ================= */
+@keyframes trB { 0% { background-position: 0% 0%; } 25% { background-position: 100% 0%; } 50% { background-position: 100% 100%; } 75% { background-position: 0% 100%; } 100% { background-position: 0% 0%; } }
+.nf { padding: 2px; border-radius: 16px; position: relative; background: linear-gradient(135deg, var(--nc), var(--nm), var(--nl), var(--na), var(--np), var(--nc)); background-size: 500% 500%; animation: trB 6s linear infinite; }
+.nf::before { content: ""; position: absolute; inset: -4px; border-radius: 20px; background: linear-gradient(135deg, rgba(0,240,255,0.07), rgba(255,0,222,0.05), transparent); background-size: 500% 500%; animation: trB 6s linear infinite; filter: blur(8px); z-index: -1; }
+.nfi { background: var(--panel); border-radius: 14px; padding: 22px 26px; position: relative; overflow: hidden; }
+.nfi::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(110deg, transparent 35%, rgba(0,240,255,0.02) 42%, rgba(255,0,222,0.015) 48%, transparent 55%); animation: holo 7s ease-in-out infinite alternate; }
+@keyframes holo { 0% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+.glitch { position: relative; font-family: 'Orbitron', monospace; font-weight: 900; letter-spacing: 5px; text-transform: uppercase; }
+.glitch::before, .glitch::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.glitch::before { color: var(--nc); z-index: -1; animation: gl1 3s infinite linear alternate-reverse; clip-path: inset(0 0 65% 0); }
+.glitch::after { color: var(--nm); z-index: -2; animation: gl2 2s infinite linear alternate-reverse; clip-path: inset(65% 0 0 0); }
+@keyframes gl1 { 0% { transform: translate(0); } 20% { transform: translate(-2px, 1px); } 40% { transform: translate(1px, -1px); } 60% { transform: translate(-1px, 2px); } 80% { transform: translate(2px, -1px); } 100% { transform: translate(0); } }
+@keyframes gl2 { 0% { transform: translate(0); } 20% { transform: translate(2px, -1px); } 40% { transform: translate(-1px, 1px); } 60% { transform: translate(1px, -2px); } 80% { transform: translate(-2px, 1px); } 100% { transform: translate(0); } }
+.hdr { margin-bottom: 24px; }
+.hdr-c { display: flex; align-items: center; justify-content: center; gap: 18px; padding: 22px 30px; background: linear-gradient(180deg, rgba(8,8,20,0.98), rgba(3,3,10,0.99)); border-radius: 14px; position: relative; overflow: hidden; }
+.hdr-c::before { content: ""; position: absolute; top: 0; left: -50%; width: 35%; height: 100%; background: linear-gradient(90deg, transparent, rgba(0,240,255,0.05), rgba(255,0,222,0.03), transparent); animation: scnH 3s ease-in-out infinite; }
+@keyframes scnH { 0% { left: -35%; } 100% { left: 100%; } }
+.hdr-c::after { content: ""; position: absolute; bottom: 0; left: 2%; right: 2%; height: 2px; background: linear-gradient(90deg, transparent, var(--nc), var(--nm), var(--nl), var(--na), var(--np), var(--nc), transparent); background-size: 300% auto; animation: stF 2s linear infinite; box-shadow: 0 0 10px var(--nc), 0 0 25px rgba(0,240,255,0.2); }
+@keyframes stF { 0% { background-position: 0%; } 100% { background-position: 300%; } }
+.hicon { font-size: 40px; filter: drop-shadow(0 0 12px var(--nc)) drop-shadow(0 0 24px var(--nm)); animation: iH 4s ease-in-out infinite; }
+@keyframes iH { 0%, 100% { filter: drop-shadow(0 0 12px var(--nc)) drop-shadow(0 0 24px var(--nm)); transform: scale(1); } 50% { filter: drop-shadow(0 0 20px var(--nm)) drop-shadow(0 0 40px var(--nc)); transform: scale(1.1); } }
+.leds { display: flex; gap: 7px; align-items: center; }
+.led { width: 8px; height: 8px; border-radius: 50%; animation: lK ease-in-out infinite alternate; }
+.lc { background: var(--nc); box-shadow: 0 0 8px var(--nc); }
+.lm { background: var(--nm); box-shadow: 0 0 8px var(--nm); animation-delay: .2s; }
+.ll { background: var(--nl); box-shadow: 0 0 8px var(--nl); animation-delay: .4s; }
+.la { background: var(--na); box-shadow: 0 0 8px var(--na); animation-delay: .6s; }
+.lp { background: var(--np); box-shadow: 0 0 8px var(--np); animation-delay: .8s; }
+@keyframes lK { 0% { opacity: .2; transform: scale(.7); } 100% { opacity: 1; transform: scale(1.15); } }
+.viz { display: flex; align-items: flex-end; justify-content: center; gap: 2px; height: 30px; margin-top: 10px; }
+.vb { width: 3px; border-radius: 2px 2px 0 0; animation: vB ease-in-out infinite alternate; }
+@keyframes vB { 0% { height: 2px; } 100% { height: 30px; } }
+.instrs { display: flex; justify-content: center; gap: 18px; margin-top: 12px; flex-wrap: wrap; }
+.mg { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.mgr { width: 42px; height: 42px; border-radius: 50%; position: relative; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(0,240,255,0.1); }
+.mgr::after { content: ""; position: absolute; inset: 3px; border-radius: 50%; border: 2px solid transparent; }
+.mgc .mgr::after { border-top-color: var(--nc); border-right-color: var(--nm); animation: ms 2s linear infinite; filter: drop-shadow(0 0 3px var(--nc)); }
+.mga .mgr::after { border-top-color: var(--na); border-right-color: var(--nl); animation: ms 2.5s linear infinite reverse; filter: drop-shadow(0 0 3px var(--na)); }
+.mgl .mgr::after { border-top-color: var(--nl); border-right-color: var(--nc); animation: ms 3s linear infinite; filter: drop-shadow(0 0 3px var(--nl)); }
+.mgp .mgr::after { border-top-color: var(--np); border-right-color: var(--na); animation: ms 1.8s linear infinite reverse; filter: drop-shadow(0 0 3px var(--np)); }
+@keyframes ms { to { transform: rotate(360deg); } }
+.mgv { font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 700; position: relative; z-index: 1; }
+.mgc .mgv { color: var(--nc); text-shadow: 0 0 6px rgba(0,240,255,0.5); }
+.mga .mgv { color: var(--na); text-shadow: 0 0 6px rgba(255,174,0,0.5); }
+.mgl .mgv { color: var(--nl); text-shadow: 0 0 6px rgba(57,255,20,0.5); }
+.mgp .mgv { color: var(--np); text-shadow: 0 0 6px rgba(255,20,147,0.5); }
+.mglb { font-family: 'Orbitron', monospace; font-size: 7px; color: #445; letter-spacing: 2px; text-transform: uppercase; }
+.isec { margin-bottom: 24px; }
+.ilbl { display: flex; align-items: center; gap: 8px; font-family: 'Orbitron', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: var(--nc); font-weight: 700; margin-bottom: 10px; text-shadow: 0 0 12px rgba(0,240,255,0.5); }
+#tab1 textarea { width: 100%; height: 160px; display: block; resize: vertical; background: rgba(2,2,8,0.85); border: 1px solid rgba(0,240,255,0.1); border-left: 3px solid var(--nc); border-radius: 8px; color: var(--nl); padding: 14px; font-family: Consolas, monospace; font-size: 13px; line-height: 1.7; outline: none; transition: .3s; text-shadow: 0 0 5px rgba(57,255,20,0.3); }
+#tab1 textarea:focus { border-color: var(--nc); border-left-color: var(--nm); box-shadow: 0 0 20px rgba(0,240,255,0.08), inset 0 0 30px rgba(0,240,255,0.02); }
+#tab1 textarea::placeholder { color: #1a1a30; text-shadow: none; }
+.brow { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+#tab1 button { position: relative; overflow: hidden; font-family: 'Orbitron', monospace; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 13px 32px; border: none; border-radius: 8px; cursor: pointer; transition: .25s; }
+.bgo { background: linear-gradient(135deg, rgba(0,240,255,0.1), rgba(255,0,222,0.1)); color: var(--nc); border: 1px solid var(--nc); box-shadow: 0 0 12px rgba(0,240,255,0.2), inset 0 0 12px rgba(0,240,255,0.03); }
+.bgo:hover { background: linear-gradient(135deg, rgba(0,240,255,0.2), rgba(255,0,222,0.2)); color: #fff; letter-spacing: 3px; box-shadow: 0 0 28px rgba(0,240,255,0.4), 0 0 50px rgba(0,240,255,0.1), inset 0 0 20px rgba(0,240,255,0.06); transform: translateY(-2px); }
+.bgo:active { transform: scale(.96); }
+.bcopy { background: linear-gradient(135deg, rgba(57,255,20,0.08), rgba(0,240,255,0.08)); color: var(--nl); border: 1px solid var(--nl); box-shadow: 0 0 12px rgba(57,255,20,0.18), inset 0 0 12px rgba(57,255,20,0.03); }
+.bcopy:hover { background: linear-gradient(135deg, rgba(57,255,20,0.18), rgba(0,240,255,0.18)); color: #fff; letter-spacing: 3px; box-shadow: 0 0 28px rgba(57,255,20,0.35), 0 0 45px rgba(0,240,255,0.12), inset 0 0 20px rgba(57,255,20,0.06); transform: translateY(-2px); }
+.bcopy:active { transform: scale(.96); }
+.bcopy.copied { color: #020208; background: var(--nl); box-shadow: 0 0 30px rgba(57,255,20,0.65); }
+.bgo::after { content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(0,240,255,0.18), transparent); transition: .6s; }
+.bgo:hover::after { left: 140%; }
+.bcl { background: rgba(255,20,147,0.05); color: var(--np); border: 1px solid rgba(255,20,147,0.2); box-shadow: 0 0 6px rgba(255,20,147,0.05); }
+.bcl:hover { background: rgba(255,20,147,0.13); color: #fff; box-shadow: 0 0 16px rgba(255,20,147,0.2); transform: translateY(-2px); }
+.bcl:active { transform: scale(.96); }
+.status { margin-top: 12px; font-size: 12px; color: #333; min-height: 18px; letter-spacing: 1px; }
+.status.ok { color: var(--nl); text-shadow: 0 0 10px rgba(57,255,20,0.5); }
+.status.err { color: var(--na); text-shadow: 0 0 10px rgba(255,174,0,0.5); }
+.gsec { margin-bottom: 24px; }
+.gpanel { display: flex; justify-content: center; align-items: center; gap: 50px; flex-wrap: wrap; padding: 26px; background: var(--panel); border-radius: 14px; }
+.g { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.gr { width: 120px; height: 120px; border-radius: 50%; position: relative; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle, rgba(0,240,255,0.015), transparent 70%); }
+.gr::before { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(0,240,255,0.06); }
+.gr::after { content: ""; position: absolute; inset: 5px; border-radius: 50%; border: 3px solid transparent; }
+.gc .gr::after { border-top-color: var(--nc); border-right-color: var(--nm); animation: ds 2s linear infinite; filter: drop-shadow(0 0 5px var(--nc)); }
+.ga .gr::after { border-top-color: var(--na); border-right-color: var(--nl); animation: ds 2.8s linear infinite reverse; filter: drop-shadow(0 0 5px var(--na)); }
+@keyframes ds { to { transform: rotate(360deg); } }
+.gdk { position: absolute; inset: 16px; border-radius: 50%; border: 1px solid rgba(0,240,255,0.04); }
+.gtkw { position: absolute; inset: 8px; border-radius: 50%; }
+.gtk { position: absolute; width: 1px; height: 9px; background: rgba(0,240,255,0.1); top: 0; left: 50%; transform-origin: 0 48px; }
+.gn { position: absolute; bottom: 50%; left: 50%; width: 2px; height: 36px; transform-origin: bottom center; transform: translateX(-50%) rotate(-90deg); border-radius: 1px; z-index: 2; animation: nSw 4s ease-in-out infinite alternate; }
+.gc .gn { background: linear-gradient(180deg, var(--nc), transparent); box-shadow: 0 0 5px var(--nc); }
+.ga .gn { background: linear-gradient(180deg, var(--na), transparent); box-shadow: 0 0 5px var(--na); }
+@keyframes nSw { 0% { transform: translateX(-50%) rotate(-90deg); } 100% { transform: translateX(-50%) rotate(90deg); } }
+.gdt { position: absolute; width: 7px; height: 7px; border-radius: 50%; z-index: 3; }
+.gc .gdt { background: var(--nc); box-shadow: 0 0 7px var(--nc); }
+.ga .gdt { background: var(--na); box-shadow: 0 0 7px var(--na); }
+.gv { font-family: 'Orbitron', monospace; font-size: 18px; font-weight: 900; position: relative; z-index: 2; text-align: center; margin-top: 5px; }
+.gc .gv { color: var(--nc); text-shadow: 0 0 16px rgba(0,240,255,0.6); }
+.ga .gv { color: var(--na); text-shadow: 0 0 16px rgba(255,174,0,0.6); }
+.glb { font-family: 'Orbitron', monospace; font-size: 9px; color: #335; letter-spacing: 3px; text-transform: uppercase; }
+.tsec { position: relative; }
+.tc { background: var(--panel); border-radius: 14px; overflow: hidden; }
+.tstrip { height: 3px; background: linear-gradient(90deg, var(--nc), var(--nm), var(--nl), var(--na), var(--np), var(--nc)); background-size: 400% auto; animation: stF 2s linear infinite; box-shadow: 0 0 10px rgba(0,240,255,0.3), 0 2px 25px rgba(255,0,222,0.12); }
+#tab1 table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+#tab1 th { background: linear-gradient(180deg, rgba(8,8,20,1), rgba(4,4,12,1)); padding: 13px 16px; font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; border-bottom: 1px solid rgba(0,240,255,0.1); border-right: 1px solid rgba(0,240,255,0.02); }
+#tab1 th:first-child { width: 70%; text-align: left; color: var(--nc); text-shadow: 0 0 10px rgba(0,240,255,0.3); }
+#tab1 th:last-child { width: 30%; text-align: right; border-right: none; color: var(--na); text-shadow: 0 0 10px rgba(255,174,0,0.3); }
+#tab1 td { padding: 10px 16px; font-size: 13px; border-bottom: 1px solid rgba(0,240,255,0.02); border-right: 1px solid rgba(0,240,255,0.01); word-break: break-word; transition: .2s; }
+#tab1 td:first-child { color: #8890a8; }
+#tab1 td:last-child { border-right: none; font-family: 'Orbitron', monospace; font-weight: 700; font-size: 12px; color: #d0d0e8; text-align: right; text-shadow: 0 0 4px rgba(255,174,0,0.1); }
+#tab1 tbody tr { background: rgba(4,4,14,0.4); transition: .2s; }
+#tab1 tbody tr:nth-child(even) { background: rgba(8,8,22,0.3); }
+#tab1 tbody tr:hover { background: rgba(0,240,255,0.04); box-shadow: inset 5px 0 0 var(--nc), inset 0 0 30px rgba(0,240,255,0.01); }
+#tab1 tbody tr:hover td:first-child { color: var(--nc); text-shadow: 0 0 8px rgba(0,240,255,0.4); }
+#tab1 tbody tr:hover td:last-child { color: var(--na); text-shadow: 0 0 10px rgba(255,174,0,0.5); }
+#tab1 tbody tr:last-child td { border-bottom: none; }
+#tab1 .erow td { text-align: center; color: #181830; padding: 30px; font-family: 'Orbitron', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; }
+
+/* ================= TAB 2 : KACAU (GOLD) ================= */
+#tab2 { position: relative; border-radius: 16px; padding: 18px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(--gtext); background: radial-gradient(circle at 15% 10%, rgba(255,193,7,.10), transparent 24%), radial-gradient(circle at 85% 18%, rgba(155,92,255,.08), transparent 25%), radial-gradient(circle at 50% 100%, rgba(255,143,0,.07), transparent 30%); }
+#tab2::before { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: .45; border-radius: 16px; background-image: linear-gradient(rgba(255,193,7,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,193,7,.035) 1px, transparent 1px); background-size: 42px 42px; -webkit-mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent); mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent); }
+#tab2 .container { width: 100%; display: flex; flex-direction: column; gap: 18px; position: relative; z-index: 1; }
+.neon-title { text-align: center; padding: 5px 0 12px; }
+.neon-title h1 { font-size: 31px; font-weight: 950; letter-spacing: 8px; color: #fff3b0; text-shadow: 0 0 5px #fff, 0 0 13px var(--gold), 0 0 30px var(--gold2), 0 0 60px rgba(255,143,0,.35); animation: titleGlow 2.8s ease-in-out infinite alternate; }
+.neon-title span { display: block; margin-top: 6px; font-size: 9px; letter-spacing: 4px; color: #d8c77d; opacity: .78; }
+@keyframes titleGlow { from { filter: brightness(.9); } to { filter: brightness(1.25); } }
+.togelon-logo { display: block; width: 100%; max-width: 520px; height: auto; margin: 0 auto 10px; object-fit: contain; filter: drop-shadow(0 0 5px rgba(255,255,255,.75)) drop-shadow(0 0 14px rgba(255,193,7,.65)) drop-shadow(0 0 32px rgba(255,143,0,.35)); animation: logoGlow 2.8s ease-in-out infinite alternate; }
+@keyframes logoGlow { from { filter: drop-shadow(0 0 4px rgba(255,255,255,.65)) drop-shadow(0 0 10px rgba(255,193,7,.45)); transform: scale(.99); } to { filter: drop-shadow(0 0 7px rgba(255,255,255,.9)) drop-shadow(0 0 18px rgba(255,193,7,.75)) drop-shadow(0 0 34px rgba(255,143,0,.4)); transform: scale(1.005); } }
+.card { position: relative; background: linear-gradient(135deg, rgba(255,193,7,.055), rgba(155,92,255,.025), rgba(255,143,0,.025)), var(--gpanel); backdrop-filter: blur(18px); border: 1px solid var(--gline); border-radius: 15px; padding: 20px; overflow: hidden; box-shadow: 0 0 0 1px rgba(255,193,7,.025), 0 15px 45px rgba(0,0,0,.45), inset 0 0 30px rgba(255,193,7,.018); }
+.card::before { content: ""; position: absolute; top: 0; left: -40%; width: 38%; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), #fff, var(--purple), transparent); box-shadow: 0 0 10px var(--gold); animation: scanLine 5.5s linear infinite; }
+@keyframes scanLine { from { left: -40%; } to { left: 140%; } }
+.section-header { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 850; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 15px; text-shadow: 0 0 9px rgba(255,193,7,.5); }
+.textarea-wrapper { display: flex; gap: 15px; }
+#tab2 textarea { width: 100%; height: 145px; background: linear-gradient(135deg, rgba(255,193,7,.025), rgba(155,92,255,.018)), rgba(0,0,0,.86); border: 1px solid rgba(255,193,7,.25); border-radius: 11px; color: #ffe999; font-family: 'Courier New', monospace; font-size: 12px; padding: 14px; resize: vertical; outline: none; box-shadow: inset 0 0 20px rgba(255,193,7,.025); transition: .25s; }
+#tab2 textarea::placeholder { color: #665e48; }
+#tab2 textarea:focus { border-color: var(--gold); box-shadow: 0 0 6px var(--gold), 0 0 22px rgba(255,193,7,.16), inset 0 0 20px rgba(255,193,7,.035); }
+.action-btns { display: flex; flex-direction: column; gap: 9px; width: 150px; }
+.action-btn, .table-action-btn { position: relative; background: linear-gradient(135deg, rgba(255,193,7,.07), rgba(155,92,255,.035)); border: 1px solid rgba(255,193,7,.28); color: #bdb49a; padding: 11px 15px; border-radius: 8px; font-size: 10px; font-weight: 800; font-family: inherit; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: .25s; overflow: hidden; }
+.action-btn::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.13), transparent); transform: translateX(-100%); transition: .45s; }
+.action-btn:hover::before { transform: translateX(100%); }
+.action-btn:hover, .table-action-btn:hover { color: #fff; border-color: var(--gold); box-shadow: 0 0 8px rgba(255,193,7,.35), 0 0 22px rgba(255,193,7,.08); transform: translateY(-2px); }
+.hasil-btn { color: #fff3b0; background: linear-gradient(135deg, rgba(255,193,7,.2), rgba(255,143,0,.11), rgba(155,92,255,.07)); border-color: var(--gold); text-shadow: 0 0 8px rgba(255,193,7,.8); box-shadow: 0 0 9px rgba(255,193,7,.22), inset 0 0 15px rgba(255,193,7,.035); }
+.hasil-btn:hover { border-color: #fff; box-shadow: 0 0 9px var(--gold), 0 0 28px rgba(255,193,7,.28); }
+.hasil-btn.success { background: linear-gradient(135deg, #b77900, #6b3fc0); border-color: #fff; box-shadow: 0 0 12px var(--gold), 0 0 28px rgba(155,92,255,.4); }
+.stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+.stat-card { position: relative; background: linear-gradient(135deg, rgba(255,193,7,.065), rgba(155,92,255,.025)), rgba(14,13,10,.86); border: 1px solid rgba(255,193,7,.18); border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; box-shadow: inset 0 0 20px rgba(255,193,7,.018), 0 10px 25px rgba(0,0,0,.25); transition: .25s; }
+.stat-card:hover { border-color: rgba(255,193,7,.48); box-shadow: 0 0 18px rgba(255,193,7,.1), inset 0 0 20px rgba(255,193,7,.035); }
+.stat-icon { padding: 12px; border-radius: 9px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 12px currentColor; }
+.stat-text { text-align: right; }
+.stat-value { font-size: 23px; font-weight: 950; color: #fff4bf; text-shadow: 0 0 10px rgba(255,193,7,.18); }
+.stat-label { font-size: 9px; color: #8e8975; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; margin-top: 3px; }
+.table-header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid rgba(255,193,7,.1); padding-bottom: 10px; }
+.table-actions { display: flex; gap: 8px; }
+.table-action-btn { padding: 8px 13px; background: rgba(255,193,7,.045); }
+.table-responsive { overflow-x: auto; }
+#tab2 table { width: 100%; border-collapse: collapse; font-size: 11px; }
+#tab2 th { color: var(--gold); padding: 13px 15px; font-weight: 850; text-transform: uppercase; border-bottom: 1px solid rgba(255,193,7,.3); text-align: left; font-size: 9px; letter-spacing: 1px; text-shadow: 0 0 7px rgba(255,193,7,.4); }
+#tab2 td { padding: 13px 15px; border-bottom: 1px solid rgba(255,255,255,.035); color: #c9c2ad; }
+#tab2 tr { transition: .2s; }
+#tab2 tr:hover td { background: linear-gradient(90deg, rgba(255,193,7,.045), rgba(155,92,255,.035)); color: #fff; }
+.bank-badge { font-weight: 900; padding: 4px 9px; border-radius: 5px; text-align: center; font-size: 9px; letter-spacing: .6px; display: inline-block; min-width: 60px; box-shadow: 0 0 8px rgba(255,255,255,.1); }
+.bank-bni { background: #fbbf24; color: #000; }
+.bank-bca { background: #0758a8; color: #fff; }
+.bank-seabank { background: #00d9ff; color: #001015; }
+.bank-mandiri { background: #ff7b00; color: #fff; }
+.bank-bri { background: #0646c0; color: #fff; }
+.bank-cimb { background: #7b32d1; color: #fff; }
+.bank-dana { background: #00bfe8; color: #001015; }
+.bank-ovo { background: #8b45d8; color: #fff; }
+.bank-linkaja { background: #e52c55; color: #fff; }
+.bank-gopay { background: #00b9dc; color: #001015; }
+.bank-default { background: #34312a; color: #fff; }
+.empty-row { text-align: center; color: #655f50; padding: 45px; font-style: italic; letter-spacing: .5px; }
+.footer { margin-top: 5px; text-align: center; font-size: 9px; color: #625c4e; letter-spacing: 2px; text-shadow: 0 0 8px rgba(255,193,7,.12); }
+.footer span { color: var(--gold) !important; }
+
+/* ================= MODAL SALIN MANUAL (Tab 1) ================= */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 10000; justify-content: center; align-items: center; }
+.modal-box { background: #050510; border: 1px solid var(--nc); padding: 20px; border-radius: 12px; width: 90%; max-width: 500px; box-shadow: 0 0 30px rgba(0,240,255,0.2); }
+.modal-title { color: var(--nc); font-family: 'Orbitron', sans-serif; text-align: center; margin-bottom: 10px; letter-spacing: 2px; }
+.modal-desc { color: #b0b8d0; font-size: 12px; margin-bottom: 15px; text-align: center; }
+.modal-textarea { width: 100%; height: 200px; background: rgba(2,2,8,0.9); color: var(--nl); border: 1px solid rgba(0,240,255,0.3); border-radius: 6px; padding: 10px; font-family: Consolas, monospace; resize: none; }
+.modal-btns { text-align: center; margin-top: 15px; display: flex; gap: 10px; justify-content: center; }
+.modal-btn { padding: 10px 22px; border-radius: 6px; cursor: pointer; font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border: none; transition: .25s; }
+.modal-btn-copy { background: var(--nl); color: #020208; }
+.modal-btn-copy:hover { box-shadow: 0 0 16px rgba(57,255,20,.5); }
+.modal-btn-close { background: var(--np); color: #fff; }
+.modal-btn-close:hover { box-shadow: 0 0 16px rgba(255,20,147,.5); }
+
+/* ================= TOAST (Tab 2) ================= */
+.toast { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%) translateY(100px); background: linear-gradient(135deg, rgba(255,193,7,.13), rgba(155,92,255,.12)); backdrop-filter: blur(15px); border: 1px solid var(--gold); color: #fff; padding: 12px 22px; border-radius: 9px; font-size: 11px; font-weight: 850; font-family: 'Segoe UI', Tahoma, sans-serif; letter-spacing: .5px; opacity: 0; pointer-events: none; transition: .3s; box-shadow: 0 0 12px rgba(255,193,7,.3), 0 0 30px rgba(155,92,255,.1); z-index: 9999; }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #020208; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--nc), var(--nm)); border-radius: 3px; }
+
+@media (max-width: 700px) {
+    .content { padding: 12px 10px 140px; }
+    .tabbar { gap: 6px; padding: 6px; }
+    .tab-btn { font-size: 9px; letter-spacing: 1px; padding: 12px 6px; }
+    .hdr-c { padding: 14px; gap: 10px; }
+    .hicon { font-size: 26px; }
+    .glitch { font-size: 12px !important; letter-spacing: 2px !important; }
+    .brow { flex-direction: column; gap: 8px; }
+    #tab1 button { width: 100%; }
+    #tab1 th, #tab1 td { font-size: 11px; padding: 8px 10px; }
+    #tab1 th:first-child { width: 64%; }
+    #tab1 th:last-child { width: 36%; }
+    .gpanel { flex-direction: column; gap: 20px; padding: 16px; }
+    .gr { width: 90px; height: 90px; }
+    .gv { font-size: 14px; }
+    .gn { height: 26px; }
+    .viz { height: 18px; }
+    .instrs { gap: 10px; }
+    .mgr { width: 34px; height: 34px; }
+    #tab2 { padding: 10px 6px; }
+    .togelon-logo { width: 180px; max-width: 75%; }
+    .neon-title h1 { font-size: 21px; letter-spacing: 5px; }
+    .textarea-wrapper { flex-direction: column; }
+    .action-btns { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); }
+    .stats-grid { grid-template-columns: 1fr; }
+    .table-header-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .card { padding: 15px; }
+    #tab2 th, #tab2 td { padding: 10px; }
+}
+</style>
+</head>
+<body>
+    <div class="wallpaper"><img src="https://togelon.com/asset/togel-on-com-image-model.png"></div>
+    <div class="nebula"></div><div class="aurora"></div><div class="matrix" id="matrix"></div><div class="road-wrap" id="roadWrap"><div class="road"></div></div><div class="fog"></div><div class="ltng" id="ltng"></div><div class="embers" id="embers"></div>
+    <div class="gold-portal"></div>
+
+    <div class="content">
+
+        <!-- ===== TAB BAR ===== -->
+        <div class="tabbar">
+            <button class="tab-btn active" onclick="switchTab('tab1', this)">&#9851; SC DEPO BCA</button>
+            <button class="tab-btn tgold" onclick="switchTab('tab2', this)">&#9889; KACAU (PENDING)</button>
+        </div>
+
+        <!-- ===== TAB 1 : SC DEPO BCA ===== -->
+        <div id="tab1" class="tab-panel active">
+            <div class="hdr"><div class="nf"><div class="hdr-c"><span class="hicon">&#9851;</span><h1 class="glitch" data-text="Dashboard Rekening" style="font-size:clamp(14px,3vw,24px)">13/08</h1><div class="leds"><span class="led lc"></span><span class="led lm"></span><span class="led ll"></span><span class="led la"></span><span class="led lp"></span></div></div><div class="viz" id="viz"></div><div class="instrs"><div class="mg mgc"><div class="mgr"><span class="mgv">88</span></div><span class="mglb">Speed</span></div><div class="mg mga"><div class="mgr"><span class="mgv">4.2</span></div><span class="mglb">RPM</span></div><div class="mg mgl"><div class="mgr"><span class="mgv">72</span></div><span class="mglb">Temp</span></div><div class="mg mgp"><div class="mgr"><span class="mgv">F</span></div><span class="mglb">Fuel</span></div></div></div></div>
+            <div class="isec"><div class="nf"><div class="nfi"><label class="ilbl" for="rawInput"><span class="led lc" style="width:5px;height:5px"></span>Input Data Mutasi</label><textarea id="rawInput" placeholder="Paste teks mutasi BCA di sini..."></textarea><div class="brow">
+                <button class="bgo" onclick="processCleanData()">&#9654; Proses Data</button>
+                <button class="bcopy" onclick="copyCleanData()">&#128203; Copy Hasil</button>
+                <button class="bcl" onclick="clearAllData()">&#10005; Bersihkan</button>
+            </div><div id="status" class="status"></div></div></div></div>
+            <div class="gsec" id="gsec" style="display:none"><div class="nf"><div class="gpanel"><div class="g gc"><div class="gr"><div class="gdk"></div><div class="gtkw" id="tkC"></div><div class="gn"></div><div class="gdt"></div></div><span class="gv" id="totalCount">0</span><span class="glb">Transaksi</span></div><div class="g ga"><div class="gr"><div class="gdk"></div><div class="gtkw" id="tkA"></div><div class="gn"></div><div class="gdt"></div></div><span class="gv" id="totalNominal" style="font-size:13px">0</span><span class="glb">Total Nominal</span></div></div></div></div>
+            <div class="tsec"><div class="nf"><div class="tc"><div class="tstrip"></div><table><thead><tr><th>NAMA REKENING</th><th>NOMINAL</th></tr></thead><tbody id="cleanResultBody"><tr class="erow"><td colspan="2">Belum ada data</td></tr></tbody></table></div></div></div>
+        </div>
+
+        <!-- ===== TAB 2 : KACAU (PENDING) ===== -->
+        <div id="tab2" class="tab-panel">
+            <div class="container">
+                <div class="neon-title">
+                    <img src="https://cdn.areabermain.club/assets/cdn/az7/2026/09/08/20260908/02ad14f5aae8f8547c74814dcdc1b131/slider-banner-togelup-bonus-terbaik.png" alt="Togel On" class="togelon-logo" loading="eager">
+                    <span></span>
+                </div>
+
+                <div class="card">
+                    <div class="section-header"><i data-lucide="radio" size="15" style="color:#ffd54a"></i> TEMPEL DATA DISINI YA BOSKU</div>
+                    <div class="textarea-wrapper">
+                        <textarea id="dataInput" oninput="parseExcelData()" placeholder="Tempel data transaksi pending di sini..."></textarea>
+                        <div class="action-btns">
+                            <button class="action-btn" onclick="pasteText()"><i data-lucide="clipboard" size="14"></i> PASTE</button>
+                            <button class="action-btn hasil-btn" onclick="copyHasil(this)"><i data-lucide="zap" size="14"></i> HASIL</button>
+                            <button class="action-btn" onclick="clearAll()"><i data-lucide="trash-2" size="14"></i> CLEAR</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:rgba(255,193,7,.08);color:#ffd54a;"><i data-lucide="activity" size="23"></i></div>
+                        <div class="stat-text">
+                            <div class="stat-value" id="pendingCount">0</div>
+                            <div class="stat-label">Pending Records</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:rgba(77,255,154,.08);color:#4dff9a;"><i data-lucide="wallet" size="23"></i></div>
+                        <div class="stat-text">
+                            <div class="stat-value" id="totalAmount">Rp 0</div>
+                            <div class="stat-label">Total Nominal</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="table-header-bar">
+                        <div class="section-header" style="margin-bottom:0;"><i data-lucide="database" size="16"></i> HASIL DATA</div>
+                        <div class="table-actions">
+                            <button class="table-action-btn" onclick="copyHasil(this)"><i data-lucide="copy" size="13"></i> COPY HASIL</button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead><tr><th>Bank</th><th>No/Status</th><th>Member Code</th><th>Nama Rek</th><th style="text-align:right">Nominal</th></tr></thead>
+                            <tbody id="table-body">
+                                <tr><td colspan="5" class="empty-row">⟡ DATA KOSONG ⟡<br>Tempel data transaksi untuk memulai sistem.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="footer">◈ BLACK GOLD PWR SYSTEM ◈ <span>ONLINE</span> ◈ SECURED ◈</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal salin manual (Tab 1) -->
+    <div id="copyModal" class="modal-overlay">
+        <div class="modal-box">
+            <h3 class="modal-title">SALIN MANUAL</h3>
+            <p class="modal-desc">Browser memblokir salin otomatis. Tekan tombol "Salin Teks" di bawah ini atau blok teks lalu tekan Ctrl+C.</p>
+            <textarea id="manualCopyText" class="modal-textarea" readonly></textarea>
+            <div class="modal-btns">
+                <button id="manualCopyBtn" class="modal-btn modal-btn-copy">Salin Teks</button>
+                <button onclick="document.getElementById('copyModal').style.display='none'" class="modal-btn modal-btn-close">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast (Tab 2) -->
+    <div id="toast" class="toast">✓ Hasil berhasil di-copy!</div>
+
+<script>
+/* ============ EFEK LATAR (Tab 1) ============ */
+(function(){const m=document.getElementById("matrix");for(let i=0;i<16;i++){const c=document.createElement("div");c.className="mcol";c.style.left=(i/16*100)+"%";let s="";for(let j=0;j<50;j++)s+=String.fromCharCode(0x30A0+Math.random()*96);c.textContent=s;c.style.animationDuration=(8+Math.random()*12)+"s";c.style.animationDelay=Math.random()*8+"s";m.appendChild(c)}})();
+(function(){const r=document.getElementById("roadWrap");const co=["var(--nc)","var(--nm)","var(--na)"];for(let i=0;i<6;i++){const l=document.createElement("div");l.className="spdln";l.style.top=(50+Math.random()*40)+"%";l.style.width=(80+Math.random()*180)+"px";l.style.background="linear-gradient(90deg,transparent,"+co[i%3]+",transparent)";l.style.opacity=0.05+Math.random()*0.05;l.style.animationDuration=(1.5+Math.random()*2)+"s";l.style.animationDelay=Math.random()*4+"s";r.appendChild(l)}})();
+(function(){const e=document.getElementById("embers");const co=["#00f0ff","#ff00de","#39ff14","#ffae00","#ff1493"];for(let i=0;i<28;i++){const p=document.createElement("div");p.className="embr";p.style.left=Math.random()*100+"%";p.style.bottom="-5px";const sz=1+Math.random()*2.5;p.style.width=p.style.height=sz+"px";const c=co[Math.floor(Math.random()*5)];p.style.background=c;p.style.boxShadow="0 0 6px "+c;p.style.animationDuration=(10+Math.random()*14)+"s";p.style.animationDelay=Math.random()*12+"s";e.appendChild(p)}})();
+(function(){const l=document.getElementById("ltng");setInterval(function(){if(Math.random()<0.1){l.classList.add("on");setTimeout(function(){l.classList.remove("on")},80)}},3500)})();
+(function(){const v=document.getElementById("viz");const co=["var(--nc)","var(--nm)","var(--nl)","var(--na)","var(--np)"];for(let i=0;i<45;i++){const b=document.createElement("div");b.className="vb";b.style.background=co[Math.floor(i/9)%5];b.style.boxShadow="0 0 3px "+co[Math.floor(i/9)%5];b.style.animationDuration=(0.25+Math.random()*0.45)+"s";b.style.animationDelay=(i*0.03)+"s";v.appendChild(b)}})();
+(function(){["tkC","tkA"].forEach(function(id){const el=document.getElementById(id);if(!el)return;for(let i=0;i<14;i++){const t=document.createElement("div");t.className="gtk";t.style.transform="rotate("+(i*25.7)+"deg)";el.appendChild(t)}})})();
+
+/* ============ SISTEM TAB ============ */
+function refreshIcons(){ if(window.lucide){ try{ lucide.createIcons(); }catch(e){} } }
+function switchTab(id, el){
+    document.querySelectorAll(".tab-panel").forEach(function(p){ p.classList.remove("active"); });
+    document.getElementById(id).classList.add("active");
+    document.querySelectorAll(".tab-btn").forEach(function(b){ b.classList.remove("active"); });
+    if(el) el.classList.add("active");
+    document.body.classList.toggle("tab2-on", id === "tab2");
+    if(id === "tab2") refreshIcons();
+}
+
+/* ============ TAB 1 : PARSER MUTASI BCA ============ */
+function formatNominal(n){const v=Number(n);if(!Number.isFinite(v))return"0";return Math.round(v).toLocaleString("en-US")}
+function parseNom(s){s=String(s).replace(/,/g,"");const v=parseFloat(s);if(isNaN(v)||v<=0)return null;return v}
+
+function isValidNameLine(ln) {
+    if (!ln || ln.length < 2) return false;
+    if (/^[0-9,.]+$/.test(ln)) return false;
+    if (/^\d{10,}$/.test(ln)) return false;
+    if (/^\d{4}\/[A-Z]/i.test(ln)) return false;
+    if (/^\d{1,2}\/\d{1,2}\/\d{2,4}$/.test(ln)) return false;
+    if (/^\d{2}\/\d{2}\s/i.test(ln)) return false;
+    if (/^0000$/i.test(ln) || /^PEND$/i.test(ln) || /^HARI\s*INI$/i.test(ln)) return false;
+    if (/^(BI-FAST|TRSF|SWITCHING|ESPAY|TRANSFER|BIAYA|CR|DB)/i.test(ln) && !/TRANSFER DR/i.test(ln)) return false;
+    if (/^ID[0-9A-Z]{10,}$/i.test(ln)) return false;
+    if (/^MASIH\s+ADA/i.test(ln)) return false;
+    if (/^SETORAN\s+VIA/i.test(ln)) return false;
+    return true;
+}
+
+function extractNameFromLine(ln) {
+    if (/^TRFDN[-\s]/i.test(ln)) {
+        const cl = ln.replace(/^TRFDN[-\s]*/i, "");
+        if (cl.length > 1 && /[a-zA-Z]/.test(cl)) return cl;
+    }
+    if (/TANGGAL\s*:\s*\d/i.test(ln)) {
+        let m = ln.match(/WSID:\S+\s+(.+)/i);
+        if (m) return m[1].trim();
+    }
+    if (/[a-zA-Z]/.test(ln)) return ln;
+    return null;
+}
+
+function processCleanData(){
+    const raw = document.getElementById("rawInput").value.trim();
+    const rb = document.getElementById("cleanResultBody");
+    const st = document.getElementById("status");
+    const gs = document.getElementById("gsec");
+    const tc = document.getElementById("totalCount");
+    const tn = document.getElementById("totalNominal");
+
+    rb.innerHTML = ""; st.textContent = ""; st.className = "status"; gs.style.display = "none";
+    if(!raw){
+        rb.innerHTML = '<tr class="erow"><td colspan="2">Tidak ada data</td></tr>';
+        st.textContent = "Silakan paste data terlebih dahulu.";
+        st.classList.add("err");
+        return;
+    }
+
+    const lines = raw.split(/\r?\n/);
+    const trimmed = [];
+    for(let k = 0; k < lines.length; k++){
+        const tl = lines[k].trim();
+        if(tl) trimmed.push(tl);
+    }
+
+    const results = [];
+
+    function addResult(name, nom){
+        if(!name || nom === null || nom <= 0) return;
+        results.push({ name: name, nominal: nom });
+    }
+
+    for(let i = 0; i < trimmed.length; i++){
+        if(!/^CR$/i.test(trimmed[i])) continue;
+        if(i < 1) continue;
+
+        const nom = parseNom(trimmed[i-1]);
+        if(nom === null) continue;
+
+        let name = null;
+
+        let gopayId = null;
+        let isGoPay = false;
+        for(let j = i - 1; j >= Math.max(0, i - 10); j--){
+            const ln = trimmed[j];
+            if(/^ID[0-9A-Z]{10,}$/i.test(ln)){
+                gopayId = ln.trim();
+            }
+            if(/GOPAY|DOMPET\s+ANAK\s+BANGSA/i.test(ln)){
+                isGoPay = true;
+            }
+        }
+
+        if(gopayId && isGoPay){
+            name = gopayId;
+        }
+
+        if(!name){
+            for(let j = i - 1; j >= Math.max(0, i - 10); j--){
+                const m = trimmed[j].match(/TRANSFER\s+DR\s+\d+\s+(.+)/i);
+                if(m){ name = m[1].trim(); break; }
+            }
+        }
+
+        if(!name){
+            let zeroLine = -1;
+            for(let j = i - 1; j >= Math.max(0, i - 10); j--){
+                if(/^0000$/i.test(trimmed[j])){ zeroLine = j; break; }
+                if(/^0998$/i.test(trimmed[j])){ zeroLine = j; break; }
+            }
+
+            if(zeroLine !== -1){
+                const cands = [];
+                for(let j = zeroLine - 1; j >= Math.max(0, zeroLine - 8); j--){
+                    const ln = trimmed[j];
+                    if(!isValidNameLine(ln)) continue;
+                    const extracted = extractNameFromLine(ln);
+                    if(extracted) cands.push(extracted);
+                }
+                if(cands.length > 0){ name = cands[0]; }
+            }
+        }
+
+        if(!name){
+            const cands = [];
+            for(let j = i - 2; j >= Math.max(0, i - 8); j--){
+                const ln = trimmed[j];
+                if(!isValidNameLine(ln)) continue;
+                const extracted = extractNameFromLine(ln);
+                if(extracted) cands.push(extracted);
+            }
+            if(cands.length > 0){ name = cands[0]; }
+        }
+
+        addResult(name, nom);
+    }
+
+    if(results.length === 0){
+        rb.innerHTML = '<tr class="erow"><td colspan="2">Tidak ada transaksi masuk yang terbaca</td></tr>';
+        st.textContent = "Data tidak berhasil dibaca.";
+        st.classList.add("err");
+        return;
+    }
+
+    let ta = 0;
+    for(let i = 0; i < results.length; i++){
+        const tr = document.createElement("tr");
+        const d1 = document.createElement("td"); d1.textContent = results[i].name;
+        const d2 = document.createElement("td"); d2.textContent = formatNominal(results[i].nominal);
+        tr.appendChild(d1); tr.appendChild(d2);
+        rb.appendChild(tr);
+        ta += results[i].nominal;
+    }
+
+    gs.style.display = "block";
+    tc.textContent = results.length;
+    tn.textContent = "Rp " + formatNominal(ta);
+    st.textContent = "Berhasil membaca " + results.length + " transaksi masuk.";
+    st.classList.add("ok");
+
+    const l = document.getElementById("ltng");
+    l.classList.add("on"); setTimeout(function(){ l.classList.remove("on"); }, 90);
+    setTimeout(function(){ l.classList.add("on"); setTimeout(function(){ l.classList.remove("on"); }, 70); }, 180);
+}
+
+async function copyCleanData() {
+    const rows = document.querySelectorAll("#cleanResultBody tr:not(.erow)");
+    const btn = document.querySelector(".bcopy");
+    const st = document.getElementById("status");
+
+    if (!rows.length) {
+        st.textContent = "Tidak ada data untuk disalin.";
+        st.className = "status err";
+        return;
+    }
+
+    const textArr = [];
+    rows.forEach(function(row) {
+        const cols = row.querySelectorAll("td");
+        if (cols.length >= 2) {
+            textArr.push(cols[0].textContent.trim() + "\t" + cols[1].textContent.trim());
+        }
+    });
+
+    const textToCopy = textArr.join("\n");
+    let copied = false;
+
+    if (navigator.clipboard && window.isSecureContext) {
+        try {
+            await navigator.clipboard.writeText(textToCopy);
+            copied = true;
+        } catch (e) { /* lanjut ke fallback */ }
+    }
+
+    if (!copied) {
+        try {
+            const textArea = document.createElement("textarea");
+            textArea.value = textToCopy;
+            textArea.style.position = "fixed";
+            textArea.style.top = "-9999px";
+            textArea.style.left = "-9999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            const successful = document.execCommand('copy');
+            document.body.removeChild(textArea);
+            if (successful) copied = true;
+        } catch (err) { /* lanjut ke modal manual */ }
+    }
+
+    if (!copied) {
+        document.getElementById("manualCopyText").value = textToCopy;
+        document.getElementById("copyModal").style.display = "flex";
+        document.getElementById("manualCopyText").select();
+        st.textContent = "Salin manual melalui kotak dialog yang muncul.";
+        st.className = "status err";
+        return;
+    }
+
+    btn.classList.add("copied");
+    const oldText = btn.innerHTML;
+    btn.innerHTML = "&#10003; Copied!";
+    st.textContent = "Berhasil menyalin data ke clipboard!";
+    st.className = "status ok";
+    setTimeout(function() {
+        btn.classList.remove("copied");
+        btn.innerHTML = oldText;
+    }, 2000);
+}
+
+document.getElementById("manualCopyBtn").onclick = function() {
+    const t = document.getElementById("manualCopyText");
+    t.select();
+    try { document.execCommand('copy'); } catch(e) {}
+    this.innerText = "Tersalin!";
+    setTimeout(() => { this.innerText = "Salin Teks"; }, 2000);
+};
+
+function clearAllData(){
+    document.getElementById("rawInput").value = "";
+    document.getElementById("cleanResultBody").innerHTML = '<tr class="erow"><td colspan="2">Belum ada data</td></tr>';
+    document.getElementById("gsec").style.display = "none";
+    const st = document.getElementById("status");
+    st.textContent = "";
+    st.className = "status";
+}
+
+/* ============ TAB 2 : PARSER PENDING (KACAU) ============ */
+let parsedList = [];
+
+function applyEwalletPrefix(bank, noRek){
+    if(noRek === '-' || noRek.includes('*')) return noRek;
+    let upperBank = bank.toUpperCase();
+    let finalNoRek = noRek;
+    if(upperBank === 'DANA' || upperBank === 'DANA2'){
+        if(!finalNoRek.startsWith('3901')) finalNoRek = '3901' + finalNoRek;
+    } else if(upperBank === 'GOPAY'){
+        if(!finalNoRek.startsWith('70001')) finalNoRek = '70001' + finalNoRek;
+    } else if(upperBank === 'OVO'){
+        if(!finalNoRek.startsWith('39358')) finalNoRek = '39358' + finalNoRek;
+    } else if(upperBank === 'LINKAJA'){
+        if(!finalNoRek.startsWith('09110')) finalNoRek = '09110' + finalNoRek;
+    }
+    return finalNoRek;
+}
+
+function cleanNama(text){
+    return text
+        .replace(/\b(REVIEW|Erroroor|SOG|SYSTEM|null|APPROVED|REJECTED|PENDING|PROCESS)\b/gi, '')
+        .replace(/[_-]+/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+}
+
+function parseExcelData(){
+    const rawText = document.getElementById('dataInput').value.trim();
+    if(!rawText){ parsedList = []; renderTable(); return; }
+
+    const lines = rawText.split(/\r?\n/);
+    parsedList = [];
+
+    lines.forEach(function(line){
+        const cleanLine = line.trim();
+        if(!cleanLine) return;
+
+        let cols = cleanLine.split('\t').map(function(c){ return c.trim(); });
+        while(cols.length && cols[0] === '') cols.shift();
+        while(cols.length && cols[cols.length - 1] === '') cols.pop();
+
+        let memberCode = '-', noRek = '-', nama = '-', bank = '-', nominal = '0';
+
+        if(cols[0] && (cols[0].toUpperCase() === 'STATUS' || cols[0].toUpperCase() === 'MEMBER CODE')) return;
+
+        if(cols.length >= 7 && /^(PENDING|PROCESS|APPROVED|REJECTED|REVIEW)$/i.test(cols[0])){
+            memberCode = cols[1] || '-';
+            noRek = cols[2] || '-';
+            nama = cleanNama(cols[3] || '-');
+            nominal = cols[4] || '0';
+            bank = cols[6] || '-';
+        } else {
+            const bankMatch = cleanLine.match(/\b(BCA|BRI|BNI|MANDIRI|DANA2|DANA|OVO|LINKAJA|GOPAY|CIMB|PERMATA|SEABANK)\b/i);
+            bank = bankMatch ? bankMatch[0].toUpperCase() : '-';
+
+            const nominalMatch = cleanLine.match(/\b\d{1,3}(?:,\d{3})+(?:\.\d{2})?\b/) || cleanLine.match(/\b\d{1,3}(?:[.,]\d{3})+\b/);
+            if(nominalMatch) nominal = nominalMatch[0];
+
+            const noRekMatch = cleanLine.match(/\b[\d*]{3,20}\b/g);
+            if(noRekMatch){
+                noRek = noRekMatch.sort(function(a, b){
+                    return b.replace(/\*/g, '').length - a.replace(/\*/g, '').length;
+                })[0];
+            }
+
+            let textClean = cleanLine;
+            if(bank !== '-') textClean = textClean.replace(new RegExp(bank, 'gi'), '');
+            if(nominal !== '0') textClean = textClean.replace(nominal, '');
+            if(noRek !== '-') textClean = textClean.replace(noRek, ' ');
+
+            textClean = textClean
+                .replace(/\b(PROCESS|PENDING|APPROVED|REJECTED|REVIEW|null|SYSTEM|id_\d+)\b/gi, '')
+                .replace(/\b\d{2}\/\d{2}\/\d{4}\s\d{2}:\d{2}:\d{2}\b/g, '')
+                .replace(/[.,]/g, '')
+                .trim();
+
+            const parts = textClean.split(/\s+/).filter(Boolean);
+            if(parts.length){
+                memberCode = parts[0];
+                if(parts.length > 1) nama = cleanNama(parts.slice(1).join(' '));
+            }
+        }
+
+        if(memberCode !== '-' && bank !== '-'){
+            parsedList.push({
+                memberCode: memberCode,
+                bank: bank,
+                noRek: applyEwalletPrefix(bank, noRek),
+                nama: nama,
+                nominal: nominal
+            });
+        }
+    });
+
+    renderTable();
+}
+
+function renderTable(){
+    const tbody = document.getElementById('table-body');
+    tbody.innerHTML = '';
+
+    if(!parsedList.length){
+        tbody.innerHTML = '<tr><td colspan="5" class="empty-row">⟡ DATA KOSONG ⟡<br>Tempel data transaksi untuk memulai sistem.</td></tr>';
+        document.getElementById('pendingCount').innerText = '0';
+        document.getElementById('totalAmount').innerText = 'Rp 0';
+        refreshIcons();
+        return;
+    }
+
+    let totalNominalSum = 0;
+
+    parsedList.forEach(function(item){
+        const cleanNominal = item.nominal.replace(/Rp\s?/gi, '').replace(/\.\d{2}$/, '').replace(/[.,]/g, '');
+        const numericNominal = parseInt(cleanNominal) || 0;
+        totalNominalSum += numericNominal;
+
+        let bankClass = 'bank-default';
+        if(item.bank.includes('BRI')) bankClass = 'bank-bri';
+        else if(item.bank.includes('BCA')) bankClass = 'bank-bca';
+        else if(item.bank.includes('BNI')) bankClass = 'bank-bni';
+        else if(item.bank.includes('MANDIRI')) bankClass = 'bank-mandiri';
+        else if(item.bank.includes('DANA')) bankClass = 'bank-dana';
+        else if(item.bank.includes('OVO')) bankClass = 'bank-ovo';
+        else if(item.bank.includes('LINKAJA')) bankClass = 'bank-linkaja';
+        else if(item.bank.includes('GOPAY')) bankClass = 'bank-gopay';
+        else if(item.bank.includes('SEABANK')) bankClass = 'bank-seabank';
+
+        const tr = document.createElement('tr');
+        tr.innerHTML =
+            '<td><span class="bank-badge ' + bankClass + '">' + escapeHTML(item.bank) + '</span></td>' +
+            '<td style="font-family:monospace;letter-spacing:.5px">' + escapeHTML(item.noRek) + '</td>' +
+            '<td style="color:#ffd54a;font-weight:750;text-shadow:0 0 7px rgba(255,193,7,.35)">' + escapeHTML(item.memberCode) + '</td>' +
+            '<td style="text-transform:capitalize">' + escapeHTML(item.nama.toLowerCase()) + '</td>' +
+            '<td style="text-align:right;font-weight:950;color:#fff4bf;text-shadow:0 0 7px rgba(255,193,7,.22)">' + numericNominal.toLocaleString('en-US') + '</td>';
+        tbody.appendChild(tr);
+    });
+
+    document.getElementById('pendingCount').innerText = parsedList.length;
+    document.getElementById('totalAmount').innerText = 'Rp ' + totalNominalSum.toLocaleString('en-US');
+    refreshIcons();
+}
+
+function escapeHTML(value){
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
+async function copyHasil(button){
+    if(!parsedList.length){
+        showToast('⚠ Belum ada hasil untuk di-copy');
+        return;
+    }
+
+    const hasil = parsedList.map(function(item){
+        const cleanNominal = item.nominal.replace(/Rp\s?/gi, '').replace(/\.\d{2}$/, '').replace(/[.,]/g, '');
+        const numericNominal = parseInt(cleanNominal) || 0;
+        return [item.bank, item.noRek, item.memberCode, item.nama, numericNominal.toLocaleString('en-US')].join('\t');
+    }).join('\n');
+
+    let ok = false;
+    try{
+        await navigator.clipboard.writeText(hasil);
+        ok = true;
+    }catch(err){
+        const temp = document.createElement('textarea');
+        temp.value = hasil;
+        temp.style.position = 'fixed';
+        temp.style.opacity = '0';
+        document.body.appendChild(temp);
+        temp.focus();
+        temp.select();
+        try{ document.execCommand('copy'); ok = true; }catch(e){}
+        document.body.removeChild(temp);
+    }
+
+    if(ok){
+        showToast('✓ ' + parsedList.length + ' HASIL BERHASIL DI-COPY');
+        if(button){
+            const original = button.innerHTML;
+            button.classList.add('success');
+            button.innerHTML = '<i data-lucide="check" size="13"></i> COPIED!';
+            refreshIcons();
+            setTimeout(function(){
+                button.classList.remove('success');
+                button.innerHTML = original;
+                refreshIcons();
+            }, 1500);
+        }
+    } else {
+        showToast('❌ GAGAL COPY HASIL');
+    }
+}
+
+async function pasteText(){
+    try{
+        const text = await navigator.clipboard.readText();
+        document.getElementById('dataInput').value = text;
+        parseExcelData();
+        showToast('✓ DATA BERHASIL DI-PASTE');
+    }catch(err){
+        alert('Gagal paste otomatis.\n\nGunakan CTRL+V pada kolom teks.');
+    }
+}
+
+function clearAll(){
+    document.getElementById('dataInput').value = '';
+    parsedList = [];
+    renderTable();
+    showToast('✓ DATA DIBERSIHKAN');
+}
+
+let toastTimer;
+function showToast(message){
+    const toast = document.getElementById('toast');
+    toast.innerText = message;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 1800);
+}
+
+/* ============ INIT ============ */
+refreshIcons();
+parseExcelData();
+</script>
+</body>
+</html>
