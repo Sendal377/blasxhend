@@ -9,45 +9,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
 
 /* ================================================================
-   [A] VARIABEL — :root file KACAU dulu, :root file SC DEPO BCA
-       sesudahnya (bg & panel neon menang global, nilai gold
-       dipulihkan kembali khusus di dalam #tab2 di bagian [D])
+   [A] VARIABEL — gold dulu, neon sesudahnya (neon menang global,
+   nilai gold dipulihkan khusus di #tab2 & #tab3 di bagian [D])
 ================================================================ */
 :root{
-    --gold:#ffd54a;
-    --gold2:#ffb300;
-    --gold3:#fff1a8;
-    --amber:#ff8f00;
-    --purple:#9b5cff;
-    --green:#4dff9a;
-    --red:#ff4d67;
-    --bg:#050505;
-    --panel:rgba(18,16,10,.88);
-    --text:#f5f1df;
-    --muted:#8e8975;
-    --line:rgba(255,193,7,.25);
+    --gold:#ffd54a; --gold2:#ffb300; --gold3:#fff1a8; --amber:#ff8f00;
+    --purple:#9b5cff; --green:#4dff9a; --red:#ff4d67;
+    --bg:#050505; --panel:rgba(18,16,10,.88); --text:#f5f1df;
+    --muted:#8e8975; --line:rgba(255,193,7,.25);
 }
-:root {
-    --nc: #00f0ff;
-    --nm: #ff00de;
-    --nl: #39ff14;
-    --na: #ffae00;
-    --np: #ff1493;
-    --bg: #020208;
-    --panel: rgba(4, 4, 14, 0.92);
+:root{
+    --nc:#00f0ff; --nm:#ff00de; --nl:#39ff14; --na:#ffae00; --np:#ff1493;
+    --bg:#020208; --panel:rgba(4,4,14,0.92);
 }
 
 /* ================================================================
-   [B] STYLE FILE 1 (SC DEPO BCA) — verbatim.
-       Hanya selector yang BENTROK dengan file 2 (textarea, table,
-       th, td, tr) yang diberi prefiks #tab1 — isinya tetap sama.
+   [B] STYLE TAB 1 (SC DEPO BCA) — verbatim.
+       Hanya selector yang BENTROK (textarea, table, th, td, tr)
+       yang diberi prefiks #tab1 — isinya tetap sama.
 ================================================================ */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body {
-    min-height: 100vh; color: #b0b8d0; font-family: 'Rajdhani', sans-serif;
-    background: var(--bg); overflow-x: hidden;
-}
+body { min-height: 100vh; color: #b0b8d0; font-family: 'Rajdhani', sans-serif; background: var(--bg); overflow-x: hidden; }
 .wallpaper { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: var(--bg); }
 .wallpaper img { display: block; width: 100%; height: 100%; object-fit: cover; filter: contrast(1.4) saturate(1.8) brightness(0,99); }
 .wallpaper::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2,2,8,0.25) 0%, rgba(2,2,8,0.15) 30%, rgba(2,2,8,0.35) 100%, rgba(2,2,8,0.85) 100%), linear-gradient(90deg, rgba(0,240,255,0.04), transparent 25%, transparent 75%, rgba(255,0,222,0.04)); }
@@ -186,7 +169,7 @@ button { position: relative; overflow: hidden; font-family: 'Orbitron', monospac
 ::-webkit-scrollbar-track { background: #020208; }
 ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--nc), var(--nm)); border-radius: 3px; }
 
-/* Modal Salin Manual — file 1 verbatim */
+/* Modal Salin Manual — Tab 1 */
 .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 10000; justify-content: center; align-items: center; }
 .modal-box { background: #050510; border: 1px solid var(--nc); padding: 20px; border-radius: 12px; width: 90%; max-width: 500px; box-shadow: 0 0 30px rgba(0,240,255,0.2); }
 .modal-title { color: var(--nc); font-family: 'Orbitron', sans-serif; text-align: center; margin-bottom: 10px; letter-spacing: 2px; }
@@ -198,11 +181,11 @@ button { position: relative; overflow: hidden; font-family: 'Orbitron', monospac
 .modal-btn-close { background: var(--np); color: #fff; }
 
 /* ================================================================
-   [C] TAB BAR — satu-satunya tampilan baru (untuk pindah tab)
+   [C] TAB BAR — 3 tombol
 ================================================================ */
 .tabbar { display: flex; gap: 10px; margin-bottom: 22px; padding: 6px; background: var(--panel); border: 1px solid rgba(0,240,255,.12); border-radius: 14px; position: relative; overflow: hidden; }
 .tabbar::after { content: ""; position: absolute; bottom: 0; left: 2%; right: 2%; height: 2px; background: linear-gradient(90deg, transparent, var(--nc), var(--nm), var(--nl), var(--na), var(--np), var(--nc), transparent); background-size: 300% auto; animation: stF 2s linear infinite; box-shadow: 0 0 10px var(--nc); }
-.tab-btn { flex: 1; background: rgba(2,2,8,.6); border: 1px solid rgba(0,240,255,.08); color: #5a6480; padding: 14px 10px; border-radius: 9px; font-size: 11px; }
+.tab-btn { flex: 1; background: rgba(2,2,8,.6); border: 1px solid rgba(0,240,255,.08); color: #5a6480; padding: 14px 8px; border-radius: 9px; font-size: 10px; }
 .tab-btn:hover { color: #9aa4c0; border-color: rgba(0,240,255,.3); }
 .tab-btn.active { color: var(--nc); border-color: var(--nc); background: linear-gradient(135deg, rgba(0,240,255,.12), rgba(255,0,222,.10)); box-shadow: 0 0 16px rgba(0,240,255,.25); text-shadow: 0 0 10px rgba(0,240,255,.6); }
 .tab-btn.tgold.active { color: var(--gold); border-color: var(--gold); background: linear-gradient(135deg, rgba(255,193,7,.14), rgba(255,143,0,.10)); box-shadow: 0 0 16px rgba(255,193,7,.3); text-shadow: 0 0 10px rgba(255,193,7,.6); }
@@ -211,25 +194,13 @@ button { position: relative; overflow: hidden; font-family: 'Orbitron', monospac
 @keyframes tabIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* ================================================================
-   [D] STYLE FILE 2 (KACAU / GOLD) — isinya verbatim.
-       Yang disesuaikan HANYA selector global yang bentrok:
-       - body            -> #tab2 (plus nilai variabel gold dipulihkan)
-       - *               -> .gold * (font Segoe UI khusus area gold)
-       - body::before    -> .g-grid  (grid emas, jadi elemen di dlm tab)
-       - body::after     -> .g-portal (portal emas, jadi elemen di dlm tab)
-       - textarea/table/th/td/tr -> diberi prefiks #tab2
-       - html{background:#050505} tidak dipakai (latar neon file 1 jadi dasar)
+   [D] STYLE GOLD — dipakai bersama #tab2 (KACAU) & #tab3 (WD).
+       Selector bentrok di-scope ke kedua tab.
 ================================================================ */
-#tab2{
-    --bg:#050505;
-    --panel:rgba(18,16,10,.88);
-    --text:#f5f1df;
-    --muted:#8e8975;
-    --line:rgba(255,193,7,.25);
-    position:relative;
-    overflow:hidden;
-    border-radius:16px;
-    padding:10px 0 30px;
+#tab2, #tab3{
+    --bg:#050505; --panel:rgba(18,16,10,.88); --text:#f5f1df;
+    --muted:#8e8975; --line:rgba(255,193,7,.25);
+    position:relative; overflow:hidden; border-radius:16px; padding:10px 0 30px;
     color:var(--text);
     background:
         radial-gradient(circle at 15% 10%, rgba(255,193,7,.12), transparent 24%),
@@ -239,7 +210,7 @@ button { position: relative; overflow: hidden; font-family: 'Orbitron', monospac
 .gold *{ font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; }
 .gold button{ letter-spacing:normal; text-transform:none; }
 
-/* grid emas (dari body::before file 2) */
+/* grid emas */
 .g-grid{
     position:absolute; inset:0; pointer-events:none; opacity:.45;
     background-image:
@@ -249,15 +220,12 @@ button { position: relative; overflow: hidden; font-family: 'Orbitron', monospac
     -webkit-mask-image:linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
     mask-image:linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
 }
-/* portal emas (dari body::after file 2) */
+/* portal emas */
 .g-portal{
     position:absolute; width:620px; height:620px; left:50%; top:50%;
     transform:translate(-50%,-50%); pointer-events:none;
     border:1px solid rgba(255,193,7,.07); border-radius:50%;
-    box-shadow:
-        0 0 100px rgba(255,193,7,.035),
-        0 0 220px rgba(155,92,255,.025),
-        inset 0 0 120px rgba(255,193,7,.025);
+    box-shadow:0 0 100px rgba(255,193,7,.035), 0 0 220px rgba(155,92,255,.025), inset 0 0 120px rgba(255,193,7,.025);
     animation:portal 14s linear infinite;
 }
 @keyframes portal{
@@ -268,6 +236,7 @@ button { position: relative; overflow: hidden; font-family: 'Orbitron', monospac
 
 .container{ width:100%; max-width:1100px; margin:auto; display:flex; flex-direction:column; gap:18px; position:relative; }
 .neon-title{ text-align:center; padding:5px 0 12px; }
+.neon-title img{ display:block; margin:0 auto 10px; max-width:100%; height:auto; }
 .neon-title h1{ font-size:31px; font-weight:950; letter-spacing:8px; color:#fff3b0; text-shadow:0 0 5px #fff, 0 0 13px var(--gold), 0 0 30px var(--gold2), 0 0 60px rgba(255,143,0,.35); animation:titleGlow 2.8s ease-in-out infinite alternate; }
 .neon-title span{ display:block; margin-top:6px; font-size:9px; letter-spacing:4px; color:#d8c77d; opacity:.78; }
 @keyframes titleGlow{ from{ filter:brightness(.9); } to{ filter:brightness(1.25); } }
@@ -281,9 +250,9 @@ button { position: relative; overflow: hidden; font-family: 'Orbitron', monospac
 @keyframes scanLine{ from{ left:-40%; } to{ left:140%; } }
 .section-header{ display:flex; align-items:center; gap:8px; font-size:12px; font-weight:850; color:var(--gold); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:15px; text-shadow:0 0 9px rgba(255,193,7,.5); }
 .textarea-wrapper{ display:flex; gap:15px; }
-#tab2 textarea{ width:100%; height:145px; background:linear-gradient(135deg, rgba(255,193,7,.025), rgba(155,92,255,.018)), rgba(0,0,0,.86); border:1px solid rgba(255,193,7,.25); border-radius:11px; color:#ffe999; font-family:'Courier New',monospace; font-size:12px; padding:14px; resize:vertical; outline:none; box-shadow:inset 0 0 20px rgba(255,193,7,.025); transition:.25s; }
-#tab2 textarea::placeholder{ color:#665e48; }
-#tab2 textarea:focus{ border-color:var(--gold); box-shadow:0 0 6px var(--gold), 0 0 22px rgba(255,193,7,.16), inset 0 0 20px rgba(255,193,7,.035); }
+#tab2 textarea, #tab3 textarea{ width:100%; height:145px; background:linear-gradient(135deg, rgba(255,193,7,.025), rgba(155,92,255,.018)), rgba(0,0,0,.86); border:1px solid rgba(255,193,7,.25); border-radius:11px; color:#ffe999; font-family:'Courier New',monospace; font-size:12px; padding:14px; resize:vertical; outline:none; box-shadow:inset 0 0 20px rgba(255,193,7,.025); transition:.25s; }
+#tab2 textarea::placeholder, #tab3 textarea::placeholder{ color:#665e48; }
+#tab2 textarea:focus, #tab3 textarea:focus{ border-color:var(--gold); box-shadow:0 0 6px var(--gold), 0 0 22px rgba(255,193,7,.16), inset 0 0 20px rgba(255,193,7,.035); }
 .action-btns{ display:flex; flex-direction:column; gap:9px; width:150px; }
 .action-btn, .table-action-btn{ position:relative; background:linear-gradient(135deg, rgba(255,193,7,.07), rgba(155,92,255,.035)); border:1px solid rgba(255,193,7,.28); color:#bdb49a; padding:11px 15px; border-radius:8px; font-size:10px; font-weight:800; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:7px; transition:.25s; overflow:hidden; }
 .action-btn::before{ content:""; position:absolute; inset:0; background:linear-gradient(90deg, transparent, rgba(255,255,255,.13), transparent); transform:translateX(-100%); transition:.45s; }
@@ -292,6 +261,17 @@ button { position: relative; overflow: hidden; font-family: 'Orbitron', monospac
 .hasil-btn{ color:#fff3b0; background:linear-gradient(135deg, rgba(255,193,7,.2), rgba(255,143,0,.11), rgba(155,92,255,.07)); border-color:var(--gold); text-shadow:0 0 8px rgba(255,193,7,.8); box-shadow:0 0 9px rgba(255,193,7,.22), inset 0 0 15px rgba(255,193,7,.035); }
 .hasil-btn:hover{ border-color:#fff; box-shadow:0 0 9px var(--gold), 0 0 28px rgba(255,193,7,.28); }
 .hasil-btn.success{ background:linear-gradient(135deg, #b77900, #6b3fc0); border-color:#fff; box-shadow:0 0 12px var(--gold), 0 0 28px rgba(155,92,255,.4); }
+
+/* toggle prefix e-wallet (Tab 3) */
+.prefix-toggle{
+    display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:12px; padding:10px 14px;
+    background:rgba(255,193,7,.04); border:1px solid rgba(255,193,7,.15); border-radius:8px;
+    font-size:10px; color:#bdb49a; cursor:pointer; user-select:none; letter-spacing:.5px;
+}
+.prefix-toggle:hover{ border-color:rgba(255,193,7,.4); }
+.prefix-toggle input{ accent-color:#ffd54a; width:15px; height:15px; cursor:pointer; flex-shrink:0; }
+.prefix-toggle b{ color:var(--gold); font-weight:850; }
+
 .stats-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:15px; }
 .stat-card{ position:relative; background:linear-gradient(135deg, rgba(255,193,7,.065), rgba(155,92,255,.025)), rgba(14,13,10,.86); border:1px solid rgba(255,193,7,.18); border-radius:12px; padding:16px 20px; display:flex; align-items:center; justify-content:space-between; box-shadow:inset 0 0 20px rgba(255,193,7,.018), 0 10px 25px rgba(0,0,0,.25); transition:.25s; }
 .stat-card:hover{ border-color:rgba(255,193,7,.48); box-shadow:0 0 18px rgba(255,193,7,.1), inset 0 0 20px rgba(255,193,7,.035); }
@@ -303,12 +283,12 @@ button { position: relative; overflow: hidden; font-family: 'Orbitron', monospac
 .table-actions{ display:flex; gap:8px; }
 .table-action-btn{ padding:8px 13px; background:rgba(255,193,7,.045); }
 .table-responsive{ overflow-x:auto; }
-#tab2 table{ width:100%; border-collapse:collapse; font-size:11px; }
-#tab2 th{ color:var(--gold); padding:13px 15px; font-weight:850; text-transform:uppercase; border-bottom:1px solid rgba(255,193,7,.3); text-align:left; font-size:9px; letter-spacing:1px; text-shadow:0 0 7px rgba(255,193,7,.4); }
-#tab2 td{ padding:13px 15px; border-bottom:1px solid rgba(255,255,255,.035); color:#c9c2ad; }
-#tab2 tr{ transition:.2s; }
-#tab2 tr:hover td{ background:linear-gradient(90deg, rgba(255,193,7,.045), rgba(155,92,255,.035)); color:#fff; }
-.bank-badge{ font-weight:900; padding:4px 9px; border-radius:5px; text-align:center; font-size:9px; letter-spacing:.6px; display:inline-block; min-width:60px; box-shadow:0 0 8px rgba(255,255,255,.1); }
+#tab2 table, #tab3 table{ width:100%; border-collapse:collapse; font-size:11px; }
+#tab2 th, #tab3 th{ color:var(--gold); padding:13px 12px; font-weight:850; text-transform:uppercase; border-bottom:1px solid rgba(255,193,7,.3); text-align:left; font-size:9px; letter-spacing:1px; text-shadow:0 0 7px rgba(255,193,7,.4); white-space:nowrap; }
+#tab2 td, #tab3 td{ padding:11px 12px; border-bottom:1px solid rgba(255,255,255,.035); color:#c9c2ad; vertical-align:middle; }
+#tab2 tr, #tab3 tr{ transition:.2s; }
+#tab2 tr:hover td, #tab3 tr:hover td{ background:linear-gradient(90deg, rgba(255,193,7,.045), rgba(155,92,255,.035)); color:#fff; }
+.bank-badge{ font-weight:900; padding:4px 9px; border-radius:5px; text-align:center; font-size:9px; letter-spacing:.6px; display:inline-block; min-width:60px; box-shadow:0 0 8px rgba(255,255,255,.1); white-space:nowrap; }
 .bank-bni{ background:#fbbf24; color:#000; }
 .bank-bca{ background:#0758a8; color:#fff; }
 .bank-seabank{ background:#00d9ff; color:#001015; }
@@ -319,6 +299,11 @@ button { position: relative; overflow: hidden; font-family: 'Orbitron', monospac
 .bank-ovo{ background:#8b45d8; color:#fff; }
 .bank-linkaja{ background:#e52c55; color:#fff; }
 .bank-gopay{ background:#00b9dc; color:#001015; }
+.bank-shopeepay{ background:#ee4d2d; color:#fff; }
+.bank-danamon{ background:#f26522; color:#fff; }
+.bank-permata{ background:#ba0c2f; color:#fff; }
+.bank-bsi{ background:#009378; color:#fff; }
+.bank-btn{ background:#da2c38; color:#fff; }
 .bank-default{ background:#34312a; color:#fff; }
 .empty-row{ text-align:center; color:#655f50; padding:45px; font-style:italic; letter-spacing:.5px; }
 .footer{ margin-top:5px; text-align:center; font-size:9px; color:#625c4e; letter-spacing:2px; text-shadow:0 0 8px rgba(255,193,7,.12); }
@@ -327,14 +312,12 @@ button { position: relative; overflow: hidden; font-family: 'Orbitron', monospac
 .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
 
 /* ================================================================
-   [E] RESPONSIVE — gabungan media query kedua file
-       (hanya selector th/td/button yang di-prefix per tab)
+   [E] RESPONSIVE
 ================================================================ */
 @media (max-width:700px){
-    /* file 1 */
     .content{ padding:12px 10px 140px; }
     .tabbar{ gap:6px; }
-    .tab-btn{ font-size:9px; letter-spacing:1px; padding:12px 6px; }
+    .tab-btn{ font-size:8px; letter-spacing:.5px; padding:12px 4px; }
     .hdr-c{ padding:14px; gap:10px; }
     .hicon{ font-size:26px; }
     .glitch{ font-size:12px !important; letter-spacing:2px !important; }
@@ -350,8 +333,7 @@ button { position: relative; overflow: hidden; font-family: 'Orbitron', monospac
     .viz{ height:18px; }
     .instrs{ gap:10px; }
     .mgr{ width:34px; height:34px; }
-    /* file 2 */
-    #tab2{ padding:6px 0 20px; }
+    #tab2, #tab3{ padding:6px 0 20px; }
     .togelon-logo{ width:180px; max-width:75%; }
     .neon-title h1{ font-size:21px; letter-spacing:5px; }
     .textarea-wrapper{ flex-direction:column; }
@@ -359,24 +341,25 @@ button { position: relative; overflow: hidden; font-family: 'Orbitron', monospac
     .stats-grid{ grid-template-columns:1fr; }
     .table-header-bar{ flex-direction:column; align-items:flex-start; gap:10px; }
     .card{ padding:15px; }
-    #tab2 th, #tab2 td{ padding:10px; }
+    #tab2 th, #tab3 th, #tab2 td, #tab3 td{ padding:10px 8px; }
 }
 </style>
 </head>
 <body>
-    <!-- ===== LATAR FILE 1 — verbatim ===== -->
+    <!-- ===== LATAR NEON (global) ===== -->
     <div class="wallpaper"><img src="https://togelon.com/asset/togel-on-com-image-model.png"></div>
     <div class="nebula"></div><div class="aurora"></div><div class="matrix" id="matrix"></div><div class="road-wrap" id="roadWrap"><div class="road"></div></div><div class="fog"></div><div class="ltng" id="ltng"></div><div class="embers" id="embers"></div>
 
     <div class="content">
 
-        <!-- ===== TAB BAR (baru) ===== -->
+        <!-- ===== TAB BAR ===== -->
         <div class="tabbar">
             <button class="tab-btn active" onclick="showTab('tab1', this)">&#9851; SC DEPO BCA</button>
-            <button class="tab-btn tgold" onclick="showTab('tab2', this)">&#9889; KACAU (PENDING)</button>
+            <button class="tab-btn tgold" onclick="showTab('tab2', this)">&#9889; WD ALL BANK</button>
+            <button class="tab-btn tgold" onclick="showTab('tab3', this)">&#9878; WD REPORT</button>
         </div>
 
-        <!-- ===== TAB 1 : SC DEPO BCA — HTML file 1 verbatim ===== -->
+        <!-- ===== TAB 1 : SC DEPO BCA ===== -->
         <div id="tab1" class="tab-panel active">
             <div class="hdr"><div class="nf"><div class="hdr-c"><span class="hicon">&#9851;</span><h1 class="glitch" data-text="Dashboard Rekening" style="font-size:clamp(14px,3vw,24px)">13/08</h1><div class="leds"><span class="led lc"></span><span class="led lm"></span><span class="led ll"></span><span class="led la"></span><span class="led lp"></span></div></div><div class="viz" id="viz"></div><div class="instrs"><div class="mg mgc"><div class="mgr"><span class="mgv">88</span></div><span class="mglb">Speed</span></div><div class="mg mga"><div class="mgr"><span class="mgv">4.2</span></div><span class="mglb">RPM</span></div><div class="mg mgl"><div class="mgr"><span class="mgv">72</span></div><span class="mglb">Temp</span></div><div class="mg mgp"><div class="mgr"><span class="mgv">F</span></div><span class="mglb">Fuel</span></div></div></div></div>
             <div class="isec"><div class="nf"><div class="nfi"><label class="ilbl" for="rawInput"><span class="led lc" style="width:5px;height:5px"></span>Input Data Mutasi</label><textarea id="rawInput" placeholder="Paste teks mutasi BCA di sini..."></textarea><div class="brow">
@@ -388,15 +371,14 @@ button { position: relative; overflow: hidden; font-family: 'Orbitron', monospac
             <div class="tsec"><div class="nf"><div class="tc"><div class="tstrip"></div><table><thead><tr><th>NAMA REKENING</th><th>NOMINAL</th></tr></thead><tbody id="cleanResultBody"><tr class="erow"><td colspan="2">Belum ada data</td></tr></tbody></table></div></div></div>
         </div>
 
-        <!-- ===== TAB 2 : KACAU — HTML file 2 verbatim ===== -->
+        <!-- ===== TAB 2 : KACAU (PENDING) ===== -->
         <div id="tab2" class="tab-panel gold">
             <div class="g-grid"></div>
             <div class="g-portal"></div>
             <div class="container">
 
                 <div class="neon-title">
-                    <img src="https://cdn.areabermain.club/assets/cdn/az7/2026/09/08/20260908/02ad14f5aae8f8547c74814dcdc1b131/slider-banner-togelup-bonus-terbaik.png" loading="eager">
-                    <span></span>
+                   
                 </div>
 
                 <div class="card">
@@ -493,9 +475,119 @@ button { position: relative; overflow: hidden; font-family: 'Orbitron', monospac
             <div id="toast" class="toast">✓ Hasil berhasil di-copy!</div>
         </div>
 
+        <!-- ===== TAB 3 : WD PROCESSOR ===== -->
+        <div id="tab3" class="tab-panel gold">
+            <div class="g-grid"></div>
+            <div class="g-portal"></div>
+            <div class="container">
+
+                <div class="neon-title">
+                 
+            
+
+                <div class="card">
+                    <div class="section-header">
+                        <i data-lucide="radio" size="15" style="color:#ffd54a"></i>
+                        TEMPEL DATA WITHDRAW DISINI
+                    </div>
+
+                    <div class="textarea-wrapper">
+                        <textarea id="wdInput" oninput="parseWdData()" placeholder="Tempel data withdraw di sini..."></textarea>
+
+                        <div class="action-btns">
+                            <button class="action-btn" onclick="pasteWdText()">
+                                <i data-lucide="clipboard" size="14"></i>
+                                PASTE
+                            </button>
+                            <button class="action-btn hasil-btn" onclick="copyWdHasil(this)">
+                                <i data-lucide="zap" size="14"></i>
+                                HASIL
+                            </button>
+                            <button class="action-btn" onclick="clearWdAll()">
+                                <i data-lucide="trash-2" size="14"></i>
+                                CLEAR
+                            </button>
+                        </div>
+                    </div>
+
+                    <label class="prefix-toggle">
+                        <input type="checkbox" id="prefixToggle" checked onchange="renderWdTable()">
+                        <span>TAMBAH PREFIX E-WALLET &nbsp;<b>DANA 3901 / GOPAY 70001 / OVO 39358 / LINKAJA 09110</b></span>
+                    </label>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:rgba(255,193,7,.08);color:#ffd54a;">
+                            <i data-lucide="activity" size="23"></i>
+                        </div>
+                        <div class="stat-text">
+                            <div class="stat-value" id="wdCount">0</div>
+                            <div class="stat-label">Total Transaksi</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:rgba(77,255,154,.08);color:#4dff9a;">
+                            <i data-lucide="wallet" size="23"></i>
+                        </div>
+                        <div class="stat-text">
+                            <div class="stat-value" id="wdTotal">Rp 0</div>
+                            <div class="stat-label">Total Nominal</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="table-header-bar">
+                        <div class="section-header" style="margin-bottom:0;">
+                            <i data-lucide="database" size="16"></i>
+                            HASIL DATA
+                        </div>
+                        <div class="table-actions">
+                            <button class="table-action-btn" onclick="copyWdHasil(this)">
+                                <i data-lucide="copy" size="13"></i>
+                                COPY HASIL
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Bank</th>
+                                    <th>No Rek</th>
+                                    <th>User ID</th>
+                                    <th>Nama Rek</th>
+                                    <th style="text-align:right">Nominal</th>
+                                </tr>
+                            </thead>
+                            <tbody id="wdTableBody">
+                                <tr>
+                                    <td colspan="5" class="empty-row">
+                                        ⟡ DATA KOSONG ⟡<br>
+                                        Tempel data withdraw untuk memulai.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    ◈ BLACK GOLD PWR SYSTEM ◈
+                    <span>ONLINE</span>
+                    ◈ SECURED ◈
+                </div>
+
+            </div>
+
+            <div id="wdToast" class="toast">✓ Hasil berhasil di-copy!</div>
+        </div>
+
     </div>
 
-    <!-- ===== Modal file 1 — verbatim ===== -->
+    <!-- ===== Modal Tab 1 ===== -->
     <div id="copyModal" class="modal-overlay">
         <div class="modal-box">
             <h3 class="modal-title">SALIN MANUAL</h3>
@@ -558,7 +650,7 @@ function processCleanData(){
     const gs = document.getElementById("gsec");
     const tc = document.getElementById("totalCount");
     const tn = document.getElementById("totalNominal");
-    
+
     rb.innerHTML = ""; st.textContent = ""; st.className = "status"; gs.style.display = "none";
     if(!raw){
         rb.innerHTML = '<tr class="erow"><td colspan="2">Tidak ada data</td></tr>';
@@ -575,7 +667,7 @@ function processCleanData(){
     }
 
     const results = [];
-    
+
     function addResult(name, nom){
         if(!name || nom === null || nom <= 0) return;
         results.push({ name: name, nominal: nom });
@@ -767,6 +859,8 @@ function clearAllData(){
 /* ================================================================
    SCRIPT 2 — KACAU / PENDING
    DI-SALIN PERSIS DARI FILE ASLI ANDA. TIDAK ADA YANG DIUBAH.
+   (applyEwalletPrefix & escapeHTML di sini juga dipakai bersama
+    oleh Script 3 / WD PROCESSOR karena isinya identik)
 ================================================================ */
 
 let parsedList = [];
@@ -1773,6 +1867,9 @@ function showToast(message){
 
 /* =========================================
    INIT
+   (init bersama: lucide untuk SEMUA tab,
+    parse awal tab 2; state awal tab 3 sudah
+    ada di HTML sehingga tidak perlu dipanggil)
 ========================================= */
 
 window.onload = function(){
@@ -1787,8 +1884,363 @@ window.onload = function(){
 
 <script>
 /* ================================================================
-   KODE TAB — INI SATU-SATUYA JAVASCRIPT BARU.
-   Semua fungsi dari kedua script asli di atas tidak diubah.
+   SCRIPT 3 — WD PROCEAAAAASOR (versi terbaru: cutAtStatus +
+   urutan kolom BANK | NO REK | USER ID | NAMA REK | NOMINAL)
+
+   Di-salin dari file WD Processor Anda.
+   HANYA nama fungsi yang BENTROK dengan Script 2 yang di-rename
+   (logika di dalamnya TIDAK DIUBAH SAMA SEKALI):
+     renderTable -> renderWdTable
+     copyHasil   -> copyWdHasil
+     pasteText   -> pasteWdText
+     clearAll    -> clearWdAll
+     showToast   -> showWdToast (elemen toast: id="wdToast")
+   applyEwalletPrefix & escapeHTML tidak diduplikasi — isinya
+   identik dengan Script 2, dipakai bersama.
+   window.onload tidak perlu — sudah di-handle Script 2.
+================================================================ */
+
+let wdList = [];
+
+var BANK_STR = 'BCA|BRI|BNI|MANDIRI|DANA2|DANA|OVO|LINKAJA|GOPAY|CIMBNIAGA|CIMB|PERMATA|SEABANK|SHOPEEPAY|DANAMON|PANIN|MEGA|OCBC|BSI|BTN|QRIS|JENIUS';
+
+/* Kata noise yang dibuang dari NAMA */
+var NOISE_RE = /\b(accept|accepted|pending|reject|rejected|process|processing|review|success|sukses|done|cancel|canceled|cancelled|failed|gagal|operator|status|jumlah|action|hasil|dari|tujuan|terima|tanggal|bank|rek|rekening|nomor|no|a\/n)\b/gi;
+
+/* Label header laporan (deteksi baris header) */
+var LABELS = ['tanggal','terima','action','dari','tujuan','jumlah','status','operator','bank','rek','user','nama','nominal','id'];
+
+/* =========================================
+   POTONG SEMUA TEKS SETELAH KATA STATUS
+   (ACCEPT / PENDING / ... ) → nama operator
+   & keterangan lain di belakangnya
+   OTOMATIS TERBUANG, tidak masuk nama.
+========================================= */
+
+function cutAtStatus(str){
+    var m = str.match(/\b(accept(?:ed)?|pending|reject(?:ed)?|process(?:ing)?|review(?:ed)?|success|sukses|done|cancel(?:l)?(?:ed)?|failed|gagal|complete(?:d)?|waiting|confirm(?:ed)?)\b/i);
+    if(m && m.index > 0) return str.slice(0, m.index);
+    return str;
+}
+
+/* applyEwalletPrefix & escapeHTML → lihat Script 2 (identik, dipakai bersama) */
+
+/* =========================================
+   PARSER PER BARIS — ambil:
+   BANK, NO REK, USER ID, NAMA REK, NOMINAL
+========================================= */
+
+function parseLine(line){
+    var s = line.replace(/\t/g, ' ').replace(/\s+/g, ' ').trim();
+    if(!s) return null;
+
+    /* -- buang baris judul & header laporan -- */
+    if(/laporan/i.test(s)) return null;
+    if(/&\s*user/i.test(s)) return null;
+    var labelCount = 0;
+    LABELS.forEach(function(w){
+        if(new RegExp('\\b' + w + '\\b', 'i').test(s)) labelCount++;
+    });
+    if(labelCount >= 3) return null;
+
+    if(!/\d/.test(s)) return null;
+    if(!/[A-Za-z]/.test(s)) return null;
+    s = s.replace(/\brp\.?\s*/gi, ' ');
+
+    /* normalisasi tanggal renggang: "24 - 09 - 11" → "24-09-11" */
+    s = s.replace(/(\d)\s+([-\/.])\s+(\d)\s+([-\/.])\s+(\d)/g, '$1$2$3$4$5');
+
+    var user = '-', nama = '-', bank = '-', rek = '-', nominal = 0;
+
+    /* 1. Tanggal + jam (dibuang) */
+    var dtm = s.match(/\d{1,4}[-\/.]\d{1,2}[-\/.]\d{2,4}(\s+\d{1,2}:\d{2}(?::\d{2})?)?/);
+    if(dtm) s = s.replace(dtm[0], ' ');
+    s = s.replace(/\b\d{1,2}:\d{2}(?::\d{2})?\b/g, ' ');
+
+    /* 2. USER ID = kata terakhir sebelum "Withdraw" */
+    var wm = s.match(/\b(withdraw|deposit|transfer|wd|dp)\b/i);
+    if(wm){
+        var before = s.slice(0, wm.index).trim();
+        var bt = before.split(/\s+/).filter(Boolean);
+        if(bt.length && /^\d{1,3}$/.test(bt[0])) bt.shift();
+        if(bt.length) user = bt[bt.length - 1];
+        s = s.slice(wm.index + wm[0].length);
+    }
+
+    /* 3. NO REK — nomor HP 08xx dulu */
+    var rm = s.match(/\b(0?8\d{8,12})\b/);
+    if(rm){
+        rek = rm[1];
+        s = s.replace(rek, ' ');
+        s = s.replace(/\b0?8\d{8,12}\b/g, ' ');
+    }
+    /* lalu no rekening bank 8-16 digit */
+    if(rek === '-'){
+        var rm2 = s.match(/(?:^|[\s,])(\d{8,16})\b/);
+        if(rm2){
+            rek = rm2[1];
+            s = s.replace(rek, ' ');
+        }
+    }
+
+    /* 4. BANK — kemunculan terakhir */
+    var bre = new RegExp('\\b(' + BANK_STR + ')\\b', 'gi');
+    var bAll = [], bm;
+    while((bm = bre.exec(s)) !== null) bAll.push({word: bm[1], idx: bm.index});
+    if(bAll.length){
+        var pick = bAll[bAll.length - 1];
+        bank = pick.word.toUpperCase();
+        s = s.slice(0, pick.idx) + ' ' + s.slice(pick.idx + pick.word.length);
+    }
+
+    /* 5. NOMINAL — angka berpemisah ribuan TERAKHIR */
+    var sepRe = /\b\d{1,3}(?:[.,]\d{3})+\b/g, sm, lastSep = null;
+    while((sm = sepRe.exec(s)) !== null) lastSep = sm;
+    if(lastSep){
+        nominal = parseInt(lastSep[0].replace(/[.,\s]/g, ''), 10) || 0;
+        s = s.slice(0, lastSep.index);
+    }
+
+    /* 5b. POTONG di kata status → ACCEPT, nama operator,
+           dan semua keterangan belakang GUGUR */
+    s = cutAtStatus(s);
+
+    /* 6. NOMINAL fallback — angka 4+ digit terakhir */
+    if(nominal === 0){
+        var nRe = /\b\d{4,}\b/g, nm, lastN = null;
+        while((nm = nRe.exec(s)) !== null) lastN = nm;
+        if(lastN){
+            nominal = parseInt(lastN[0], 10) || 0;
+            s = s.slice(0, lastN.index);
+        }
+        s = cutAtStatus(s);
+    }
+
+    /* 7. buang kata status / label kolom / kata umum */
+    s = s.replace(NOISE_RE, ' ');
+
+    /* 8. USER ID fallback — token campuran huruf+angka */
+    if(user === '-'){
+        var km = s.match(/\b(?=[A-Za-z0-9_]*[0-9])(?=[A-Za-z0-9_]*[A-Za-z])[A-Za-z0-9_]{3,20}\b/);
+        if(km){ user = km[0]; s = s.replace(km[0], ' '); }
+    }
+
+    /* 9. NAMA REK — SEMUA kata sisa berhuruf saja,
+           termasuk kata 1 huruf seperti "I" */
+    var words = s.split(/\s+/)
+        .filter(function(w){ return w.length && /[A-Za-z]/.test(w); })
+        .map(function(w){ return w.replace(/^[\s,;:.()\[\]-]+|[\s,;:.()\[\]-]+$/g, ''); })
+        .filter(function(w){ return w.length; });
+    if(words.length) nama = words.join(' ').trim();
+
+    /* Validasi minimal */
+    if(user === '-' && nama === '-') return null;
+    if(bank === '-' && nominal === 0 && rek === '-') return null;
+
+    return {
+        bank: bank,
+        rek: rek,
+        user: user,
+        nama: nama,
+        nominal: nominal
+    };
+}
+
+/* =========================================
+   Nama rapi: "i putu adi wijaya" →
+   "I Putu Adi Wijaya"
+========================================= */
+
+function titleCaseNama(n){
+    if(n === '-' || !n) return '-';
+    return String(n).toLowerCase().replace(/\b[a-z]/g, function(c){ return c.toUpperCase(); });
+}
+
+/* =========================================
+   PARSE SEMUA BARIS
+========================================= */
+
+function parseWdData(){
+    var raw = document.getElementById('wdInput').value.trim();
+    wdList = [];
+    if(raw){
+        raw.split(/\r?\n/).forEach(function(line){
+            var item = parseLine(line);
+            if(item) wdList.push(item);
+        });
+    }
+    renderWdTable();
+}
+
+/* =========================================
+   KELAS BADGE BANK
+========================================= */
+
+function getBankClass(bank){
+    if(bank.includes('BRI')) return 'bank-bri';
+    if(bank.includes('BCA')) return 'bank-bca';
+    if(bank.includes('BNI')) return 'bank-bni';
+    if(bank.includes('MANDIRI')) return 'bank-mandiri';
+    if(bank.includes('DANA')) return 'bank-dana';
+    if(bank.includes('OVO')) return 'bank-ovo';
+    if(bank.includes('LINKAJA')) return 'bank-linkaja';
+    if(bank.includes('GOPAY')) return 'bank-gopay';
+    if(bank.includes('SEABANK')) return 'bank-seabank';
+    if(bank.includes('SHOPEEPAY')) return 'bank-shopeepay';
+    if(bank.includes('CIMB')) return 'bank-cimb';
+    if(bank.includes('DANAMON')) return 'bank-danamon';
+    if(bank.includes('PERMATA')) return 'bank-permata';
+    if(bank.includes('BSI')) return 'bank-bsi';
+    if(bank.includes('BTN')) return 'bank-btn';
+    return 'bank-default';
+}
+
+/* =========================================
+   RENDER TABEL — BANK | NO REK | USER ID |
+   NAMA REK | NOMINAL
+   (renamed: renderTable -> renderWdTable)
+========================================= */
+
+function renderWdTable(){
+    var tbody = document.getElementById('wdTableBody');
+    tbody.innerHTML = '';
+
+    if(!wdList.length){
+        tbody.innerHTML = '<tr><td colspan="5" class="empty-row">⟡ DATA KOSONG ⟡<br>Tempel data withdraw untuk memulai.</td></tr>';
+        document.getElementById('wdCount').innerText = '0';
+        document.getElementById('wdTotal').innerText = 'Rp 0';
+        return;
+    }
+
+    var usePrefix = document.getElementById('prefixToggle').checked;
+    var total = 0;
+
+    wdList.forEach(function(item){
+        var rek = item.rek;
+        if(usePrefix && item.bank !== '-') rek = applyEwalletPrefix(item.bank, rek);
+
+        var tr = document.createElement('tr');
+        tr.innerHTML =
+            '<td><span class="bank-badge ' + getBankClass(item.bank) + '">' + escapeHTML(item.bank) + '</span></td>' +
+            '<td style="font-family:monospace;letter-spacing:.5px">' + escapeHTML(rek) + '</td>' +
+            '<td style="color:#ffd54a;font-weight:750;text-shadow:0 0 7px rgba(255,193,7,.35)">' + escapeHTML(item.user) + '</td>' +
+            '<td>' + escapeHTML(titleCaseNama(item.nama)) + '</td>' +
+            '<td style="text-align:right;font-weight:950;color:#fff4bf;text-shadow:0 0 7px rgba(255,193,7,.22)">' + item.nominal.toLocaleString('en-US') + '</td>';
+        tbody.appendChild(tr);
+        total += item.nominal;
+    });
+
+    document.getElementById('wdCount').innerText = wdList.length;
+    document.getElementById('wdTotal').innerText = 'Rp ' + total.toLocaleString('en-US');
+}
+
+/* =========================================
+   COPY HASIL — TSV siap Excel
+   BANK \t NO REK \t USER ID \t NAMA REK \t NOMINAL
+   (renamed: copyHasil -> copyWdHasil)
+========================================= */
+
+async function copyWdHasil(button){
+    if(!wdList.length){
+        showWdToast('⚠ Belum ada hasil untuk di-copy');
+        return;
+    }
+
+    var usePrefix = document.getElementById('prefixToggle').checked;
+
+    var hasil = wdList.map(function(item){
+        var rek = item.rek;
+        if(usePrefix && item.bank !== '-') rek = applyEwalletPrefix(item.bank, rek);
+        return [
+            item.bank,
+            rek,
+            item.user,
+            titleCaseNama(item.nama),
+            item.nominal.toLocaleString('en-US')
+        ].join('\t');
+    }).join('\n');
+
+    try{
+        await navigator.clipboard.writeText(hasil);
+        showWdToast('✓ ' + wdList.length + ' HASIL BERHASIL DI-COPY');
+        if(button){
+            var original = button.innerHTML;
+            button.classList.add('success');
+            button.innerHTML = '<i data-lucide="check" size="13"></i> COPIED!';
+            lucide.createIcons();
+            setTimeout(function(){
+                button.classList.remove('success');
+                button.innerHTML = original;
+                lucide.createIcons();
+            }, 1500);
+        }
+    }
+    catch(err){
+        var temp = document.createElement('textarea');
+        temp.value = hasil;
+        temp.style.position = 'fixed';
+        temp.style.opacity = '0';
+        document.body.appendChild(temp);
+        temp.focus();
+        temp.select();
+        try{
+            document.execCommand('copy');
+            showWdToast('✓ ' + wdList.length + ' HASIL BERHASIL DI-COPY');
+        }
+        catch(e){
+            showWdToast('❌ GAGAL COPY HASIL');
+        }
+        document.body.removeChild(temp);
+    }
+}
+
+/* =========================================
+   PASTE (renamed: pasteText -> pasteWdText)
+========================================= */
+
+async function pasteWdText(){
+    try{
+        var text = await navigator.clipboard.readText();
+        document.getElementById('wdInput').value = text;
+        parseWdData();
+        showWdToast('✓ DATA BERHASIL DI-PASTE');
+    }
+    catch(err){
+        alert('Gagal paste otomatis.\n\nGunakan CTRL+V pada kolom teks.');
+    }
+}
+
+/* =========================================
+   CLEAR (renamed: clearAll -> clearWdAll)
+========================================= */
+
+function clearWdAll(){
+    document.getElementById('wdInput').value = '';
+    wdList = [];
+    renderWdTable();
+    showWdToast('✓ DATA DIBERSIHKAN');
+}
+
+/* =========================================
+   TOAST (renamed: showToast -> showWdToast,
+   elemen: id="wdToast")
+========================================= */
+
+var wdToastTimer;
+function showWdToast(message){
+    var toast = document.getElementById('wdToast');
+    toast.innerText = message;
+    toast.classList.add('show');
+    clearTimeout(wdToastTimer);
+    wdToastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 1800);
+}
+
+</script>
+
+<script>
+/* ================================================================
+   KODE TAB — satu-satunya JavaScript baru.
+   Semua fungsi dari ketiga script asli di atas tidak diubah.
 ================================================================ */
 function showTab(id, btn){
     var panels = document.querySelectorAll('.tab-panel');
