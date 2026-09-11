@@ -3,24 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SC DEPO BCA + KACAU</title>
+<title>SC PINCANG XX BUNCIT</title>
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+/* ================================================================
+   [A] VARIABEL — :root file KACAU dulu, :root file SC DEPO BCA
+       sesudahnya (bg & panel neon menang global, nilai gold
+       dipulihkan kembali khusus di dalam #tab2 di bagian [D])
+================================================================ */
 :root{
-    /* === Neon (Tab 1 - SC DEPO BCA) === */
-    --nc:#00f0ff; --nm:#ff00de; --nl:#39ff14; --na:#ffae00; --np:#ff1493;
-    --bg:#020208; --panel:rgba(4,4,14,0.92);
-    /* === Gold (Tab 2 - KACAU) === */
-    --gold:#ffd54a; --gold2:#ffb300; --gold3:#fff1a8; --amber:#ff8f00;
-    --purple:#9b5cff; --green:#4dff9a; --red:#ff4d67;
-    --gpanel:rgba(18,16,10,.88); --gtext:#f5f1df; --gmuted:#8e8975; --gline:rgba(255,193,7,.25);
+    --gold:#ffd54a;
+    --gold2:#ffb300;
+    --gold3:#fff1a8;
+    --amber:#ff8f00;
+    --purple:#9b5cff;
+    --green:#4dff9a;
+    --red:#ff4d67;
+    --bg:#050505;
+    --panel:rgba(18,16,10,.88);
+    --text:#f5f1df;
+    --muted:#8e8975;
+    --line:rgba(255,193,7,.25);
 }
+:root {
+    --nc: #00f0ff;
+    --nm: #ff00de;
+    --nl: #39ff14;
+    --na: #ffae00;
+    --np: #ff1493;
+    --bg: #020208;
+    --panel: rgba(4, 4, 14, 0.92);
+}
+
+/* ================================================================
+   [B] STYLE FILE 1 (SC DEPO BCA) — verbatim.
+       Hanya selector yang BENTROK dengan file 2 (textarea, table,
+       th, td, tr) yang diberi prefiks #tab1 — isinya tetap sama.
+================================================================ */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { min-height: 100vh; color: #b0b8d0; font-family: 'Rajdhani', sans-serif; background: var(--bg); overflow-x: hidden; }
-
-/* ================= LATAR NEON (global) ================= */
+body {
+    min-height: 100vh; color: #b0b8d0; font-family: 'Rajdhani', sans-serif;
+    background: var(--bg); overflow-x: hidden;
+}
 .wallpaper { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: var(--bg); }
 .wallpaper img { display: block; width: 100%; height: 100%; object-fit: cover; filter: contrast(1.4) saturate(1.8) brightness(0,99); }
 .wallpaper::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2,2,8,0.25) 0%, rgba(2,2,8,0.15) 30%, rgba(2,2,8,0.35) 100%, rgba(2,2,8,0.85) 100%), linear-gradient(90deg, rgba(0,240,255,0.04), transparent 25%, transparent 75%, rgba(255,0,222,0.04)); }
@@ -46,26 +73,7 @@ body { min-height: 100vh; color: #b0b8d0; font-family: 'Rajdhani', sans-serif; b
 .embers { position: fixed; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
 .embr { position: absolute; border-radius: 50%; animation: eRi linear infinite; }
 @keyframes eRi { 0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; } 10% { opacity: 1; } 50% { transform: translateY(-50vh) translateX(20px) scale(0.7); opacity: 0.7; } 100% { transform: translateY(-105vh) translateX(-10px) scale(0.2); opacity: 0; } }
-
-/* Portal emas — hanya tampil saat Tab KACAU aktif */
-.gold-portal { position: fixed; width: 620px; height: 620px; left: 50%; top: 50%; transform: translate(-50%,-50%); pointer-events: none; z-index: 1; border: 1px solid rgba(255,193,7,.07); border-radius: 50%; box-shadow: 0 0 100px rgba(255,193,7,.035), 0 0 220px rgba(155,92,255,.025), inset 0 0 120px rgba(255,193,7,.025); animation: portal 14s linear infinite; display: none; }
-body.tab2-on .gold-portal { display: block; }
-@keyframes portal { 0% { transform: translate(-50%,-50%) rotate(0deg) scale(.88); } 50% { transform: translate(-50%,-50%) rotate(180deg) scale(1.04); } 100% { transform: translate(-50%,-50%) rotate(360deg) scale(.88); } }
-
 .content { position: relative; z-index: 4; width: min(1160px, 100%); margin: 0 auto; padding: 24px 20px 160px; }
-
-/* ================= TAB BAR ================= */
-.tabbar { position: relative; display: flex; gap: 8px; margin-bottom: 22px; padding: 8px; background: var(--panel); border: 1px solid rgba(0,240,255,.1); border-radius: 14px; }
-.tabbar::after { content: ""; position: absolute; bottom: 0; left: 2%; right: 2%; height: 2px; background: linear-gradient(90deg, transparent, var(--nc), var(--nm), var(--nl), var(--na), var(--np), var(--nc), transparent); background-size: 300% auto; animation: stF 2s linear infinite; box-shadow: 0 0 10px var(--nc), 0 0 25px rgba(0,240,255,0.2); }
-.tab-btn { flex: 1; font-family: 'Orbitron', monospace; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 14px 10px; border-radius: 9px; cursor: pointer; background: rgba(2,2,8,.6); border: 1px solid rgba(0,240,255,.08); color: #5a6480; transition: .3s; }
-.tab-btn:hover { color: #9aa4c0; border-color: rgba(0,240,255,.3); background: rgba(0,240,255,.05); }
-.tab-btn.active { color: var(--nc); border-color: var(--nc); background: linear-gradient(135deg, rgba(0,240,255,.12), rgba(255,0,222,.10)); box-shadow: 0 0 16px rgba(0,240,255,.25), inset 0 0 12px rgba(0,240,255,.05); text-shadow: 0 0 10px rgba(0,240,255,.6); }
-.tab-btn.tgold.active { color: var(--gold); border-color: var(--gold); background: linear-gradient(135deg, rgba(255,193,7,.14), rgba(255,143,0,.10)); box-shadow: 0 0 16px rgba(255,193,7,.3), inset 0 0 12px rgba(255,193,7,.06); text-shadow: 0 0 10px rgba(255,193,7,.6); }
-.tab-panel { display: none; }
-.tab-panel.active { display: block; animation: tabIn .45s ease; }
-@keyframes tabIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-/* ================= TAB 1 : SC DEPO BCA (NEON) ================= */
 @keyframes trB { 0% { background-position: 0% 0%; } 25% { background-position: 100% 0%; } 50% { background-position: 100% 100%; } 75% { background-position: 0% 100%; } 100% { background-position: 0% 0%; } }
 .nf { padding: 2px; border-radius: 16px; position: relative; background: linear-gradient(135deg, var(--nc), var(--nm), var(--nl), var(--na), var(--np), var(--nc)); background-size: 500% 500%; animation: trB 6s linear infinite; }
 .nf::before { content: ""; position: absolute; inset: -4px; border-radius: 20px; background: linear-gradient(135deg, rgba(0,240,255,0.07), rgba(255,0,222,0.05), transparent); background-size: 500% 500%; animation: trB 6s linear infinite; filter: blur(8px); z-index: -1; }
@@ -114,11 +122,11 @@ body.tab2-on .gold-portal { display: block; }
 .mglb { font-family: 'Orbitron', monospace; font-size: 7px; color: #445; letter-spacing: 2px; text-transform: uppercase; }
 .isec { margin-bottom: 24px; }
 .ilbl { display: flex; align-items: center; gap: 8px; font-family: 'Orbitron', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: var(--nc); font-weight: 700; margin-bottom: 10px; text-shadow: 0 0 12px rgba(0,240,255,0.5); }
-#tab1 textarea { width: 100%; height: 160px; display: block; resize: vertical; background: rgba(2,2,8,0.85); border: 1px solid rgba(0,240,255,0.1); border-left: 3px solid var(--nc); border-radius: 8px; color: var(--nl); padding: 14px; font-family: Consolas, monospace; font-size: 13px; line-height: 1.7; outline: none; transition: .3s; text-shadow: 0 0 5px rgba(57,255,20,0.3); }
-#tab1 textarea:focus { border-color: var(--nc); border-left-color: var(--nm); box-shadow: 0 0 20px rgba(0,240,255,0.08), inset 0 0 30px rgba(0,240,255,0.02); }
-#tab1 textarea::placeholder { color: #1a1a30; text-shadow: none; }
+#tab1 textarea, .modal-textarea { width: 100%; height: 160px; display: block; resize: vertical; background: rgba(2,2,8,0.85); border: 1px solid rgba(0,240,255,0.1); border-left: 3px solid var(--nc); border-radius: 8px; color: var(--nl); padding: 14px; font-family: Consolas, monospace; font-size: 13px; line-height: 1.7; outline: none; transition: .3s; text-shadow: 0 0 5px rgba(57,255,20,0.3); }
+#tab1 textarea:focus, .modal-textarea:focus { border-color: var(--nc); border-left-color: var(--nm); box-shadow: 0 0 20px rgba(0,240,255,0.08), inset 0 0 30px rgba(0,240,255,0.02); }
+#tab1 textarea::placeholder, .modal-textarea::placeholder { color: #1a1a30; text-shadow: none; }
 .brow { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
-#tab1 button { position: relative; overflow: hidden; font-family: 'Orbitron', monospace; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 13px 32px; border: none; border-radius: 8px; cursor: pointer; transition: .25s; }
+button { position: relative; overflow: hidden; font-family: 'Orbitron', monospace; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 13px 32px; border: none; border-radius: 8px; cursor: pointer; transition: .25s; }
 .bgo { background: linear-gradient(135deg, rgba(0,240,255,0.1), rgba(255,0,222,0.1)); color: var(--nc); border: 1px solid var(--nc); box-shadow: 0 0 12px rgba(0,240,255,0.2), inset 0 0 12px rgba(0,240,255,0.03); }
 .bgo:hover { background: linear-gradient(135deg, rgba(0,240,255,0.2), rgba(255,0,222,0.2)); color: #fff; letter-spacing: 3px; box-shadow: 0 0 28px rgba(0,240,255,0.4), 0 0 50px rgba(0,240,255,0.1), inset 0 0 20px rgba(0,240,255,0.06); transform: translateY(-2px); }
 .bgo:active { transform: scale(.96); }
@@ -174,172 +182,261 @@ body.tab2-on .gold-portal { display: block; }
 #tab1 tbody tr:hover td:last-child { color: var(--na); text-shadow: 0 0 10px rgba(255,174,0,0.5); }
 #tab1 tbody tr:last-child td { border-bottom: none; }
 #tab1 .erow td { text-align: center; color: #181830; padding: 30px; font-family: 'Orbitron', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #020208; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--nc), var(--nm)); border-radius: 3px; }
 
-/* ================= TAB 2 : KACAU (GOLD) ================= */
-#tab2 { position: relative; border-radius: 16px; padding: 18px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(--gtext); background: radial-gradient(circle at 15% 10%, rgba(255,193,7,.10), transparent 24%), radial-gradient(circle at 85% 18%, rgba(155,92,255,.08), transparent 25%), radial-gradient(circle at 50% 100%, rgba(255,143,0,.07), transparent 30%); }
-#tab2::before { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: .45; border-radius: 16px; background-image: linear-gradient(rgba(255,193,7,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,193,7,.035) 1px, transparent 1px); background-size: 42px 42px; -webkit-mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent); mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent); }
-#tab2 .container { width: 100%; display: flex; flex-direction: column; gap: 18px; position: relative; z-index: 1; }
-.neon-title { text-align: center; padding: 5px 0 12px; }
-.neon-title h1 { font-size: 31px; font-weight: 950; letter-spacing: 8px; color: #fff3b0; text-shadow: 0 0 5px #fff, 0 0 13px var(--gold), 0 0 30px var(--gold2), 0 0 60px rgba(255,143,0,.35); animation: titleGlow 2.8s ease-in-out infinite alternate; }
-.neon-title span { display: block; margin-top: 6px; font-size: 9px; letter-spacing: 4px; color: #d8c77d; opacity: .78; }
-@keyframes titleGlow { from { filter: brightness(.9); } to { filter: brightness(1.25); } }
-.togelon-logo { display: block; width: 100%; max-width: 520px; height: auto; margin: 0 auto 10px; object-fit: contain; filter: drop-shadow(0 0 5px rgba(255,255,255,.75)) drop-shadow(0 0 14px rgba(255,193,7,.65)) drop-shadow(0 0 32px rgba(255,143,0,.35)); animation: logoGlow 2.8s ease-in-out infinite alternate; }
-@keyframes logoGlow { from { filter: drop-shadow(0 0 4px rgba(255,255,255,.65)) drop-shadow(0 0 10px rgba(255,193,7,.45)); transform: scale(.99); } to { filter: drop-shadow(0 0 7px rgba(255,255,255,.9)) drop-shadow(0 0 18px rgba(255,193,7,.75)) drop-shadow(0 0 34px rgba(255,143,0,.4)); transform: scale(1.005); } }
-.card { position: relative; background: linear-gradient(135deg, rgba(255,193,7,.055), rgba(155,92,255,.025), rgba(255,143,0,.025)), var(--gpanel); backdrop-filter: blur(18px); border: 1px solid var(--gline); border-radius: 15px; padding: 20px; overflow: hidden; box-shadow: 0 0 0 1px rgba(255,193,7,.025), 0 15px 45px rgba(0,0,0,.45), inset 0 0 30px rgba(255,193,7,.018); }
-.card::before { content: ""; position: absolute; top: 0; left: -40%; width: 38%; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), #fff, var(--purple), transparent); box-shadow: 0 0 10px var(--gold); animation: scanLine 5.5s linear infinite; }
-@keyframes scanLine { from { left: -40%; } to { left: 140%; } }
-.section-header { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 850; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 15px; text-shadow: 0 0 9px rgba(255,193,7,.5); }
-.textarea-wrapper { display: flex; gap: 15px; }
-#tab2 textarea { width: 100%; height: 145px; background: linear-gradient(135deg, rgba(255,193,7,.025), rgba(155,92,255,.018)), rgba(0,0,0,.86); border: 1px solid rgba(255,193,7,.25); border-radius: 11px; color: #ffe999; font-family: 'Courier New', monospace; font-size: 12px; padding: 14px; resize: vertical; outline: none; box-shadow: inset 0 0 20px rgba(255,193,7,.025); transition: .25s; }
-#tab2 textarea::placeholder { color: #665e48; }
-#tab2 textarea:focus { border-color: var(--gold); box-shadow: 0 0 6px var(--gold), 0 0 22px rgba(255,193,7,.16), inset 0 0 20px rgba(255,193,7,.035); }
-.action-btns { display: flex; flex-direction: column; gap: 9px; width: 150px; }
-.action-btn, .table-action-btn { position: relative; background: linear-gradient(135deg, rgba(255,193,7,.07), rgba(155,92,255,.035)); border: 1px solid rgba(255,193,7,.28); color: #bdb49a; padding: 11px 15px; border-radius: 8px; font-size: 10px; font-weight: 800; font-family: inherit; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: .25s; overflow: hidden; }
-.action-btn::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.13), transparent); transform: translateX(-100%); transition: .45s; }
-.action-btn:hover::before { transform: translateX(100%); }
-.action-btn:hover, .table-action-btn:hover { color: #fff; border-color: var(--gold); box-shadow: 0 0 8px rgba(255,193,7,.35), 0 0 22px rgba(255,193,7,.08); transform: translateY(-2px); }
-.hasil-btn { color: #fff3b0; background: linear-gradient(135deg, rgba(255,193,7,.2), rgba(255,143,0,.11), rgba(155,92,255,.07)); border-color: var(--gold); text-shadow: 0 0 8px rgba(255,193,7,.8); box-shadow: 0 0 9px rgba(255,193,7,.22), inset 0 0 15px rgba(255,193,7,.035); }
-.hasil-btn:hover { border-color: #fff; box-shadow: 0 0 9px var(--gold), 0 0 28px rgba(255,193,7,.28); }
-.hasil-btn.success { background: linear-gradient(135deg, #b77900, #6b3fc0); border-color: #fff; box-shadow: 0 0 12px var(--gold), 0 0 28px rgba(155,92,255,.4); }
-.stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-.stat-card { position: relative; background: linear-gradient(135deg, rgba(255,193,7,.065), rgba(155,92,255,.025)), rgba(14,13,10,.86); border: 1px solid rgba(255,193,7,.18); border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; box-shadow: inset 0 0 20px rgba(255,193,7,.018), 0 10px 25px rgba(0,0,0,.25); transition: .25s; }
-.stat-card:hover { border-color: rgba(255,193,7,.48); box-shadow: 0 0 18px rgba(255,193,7,.1), inset 0 0 20px rgba(255,193,7,.035); }
-.stat-icon { padding: 12px; border-radius: 9px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 12px currentColor; }
-.stat-text { text-align: right; }
-.stat-value { font-size: 23px; font-weight: 950; color: #fff4bf; text-shadow: 0 0 10px rgba(255,193,7,.18); }
-.stat-label { font-size: 9px; color: #8e8975; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; margin-top: 3px; }
-.table-header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid rgba(255,193,7,.1); padding-bottom: 10px; }
-.table-actions { display: flex; gap: 8px; }
-.table-action-btn { padding: 8px 13px; background: rgba(255,193,7,.045); }
-.table-responsive { overflow-x: auto; }
-#tab2 table { width: 100%; border-collapse: collapse; font-size: 11px; }
-#tab2 th { color: var(--gold); padding: 13px 15px; font-weight: 850; text-transform: uppercase; border-bottom: 1px solid rgba(255,193,7,.3); text-align: left; font-size: 9px; letter-spacing: 1px; text-shadow: 0 0 7px rgba(255,193,7,.4); }
-#tab2 td { padding: 13px 15px; border-bottom: 1px solid rgba(255,255,255,.035); color: #c9c2ad; }
-#tab2 tr { transition: .2s; }
-#tab2 tr:hover td { background: linear-gradient(90deg, rgba(255,193,7,.045), rgba(155,92,255,.035)); color: #fff; }
-.bank-badge { font-weight: 900; padding: 4px 9px; border-radius: 5px; text-align: center; font-size: 9px; letter-spacing: .6px; display: inline-block; min-width: 60px; box-shadow: 0 0 8px rgba(255,255,255,.1); }
-.bank-bni { background: #fbbf24; color: #000; }
-.bank-bca { background: #0758a8; color: #fff; }
-.bank-seabank { background: #00d9ff; color: #001015; }
-.bank-mandiri { background: #ff7b00; color: #fff; }
-.bank-bri { background: #0646c0; color: #fff; }
-.bank-cimb { background: #7b32d1; color: #fff; }
-.bank-dana { background: #00bfe8; color: #001015; }
-.bank-ovo { background: #8b45d8; color: #fff; }
-.bank-linkaja { background: #e52c55; color: #fff; }
-.bank-gopay { background: #00b9dc; color: #001015; }
-.bank-default { background: #34312a; color: #fff; }
-.empty-row { text-align: center; color: #655f50; padding: 45px; font-style: italic; letter-spacing: .5px; }
-.footer { margin-top: 5px; text-align: center; font-size: 9px; color: #625c4e; letter-spacing: 2px; text-shadow: 0 0 8px rgba(255,193,7,.12); }
-.footer span { color: var(--gold) !important; }
-
-/* ================= MODAL SALIN MANUAL (Tab 1) ================= */
+/* Modal Salin Manual — file 1 verbatim */
 .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 10000; justify-content: center; align-items: center; }
 .modal-box { background: #050510; border: 1px solid var(--nc); padding: 20px; border-radius: 12px; width: 90%; max-width: 500px; box-shadow: 0 0 30px rgba(0,240,255,0.2); }
 .modal-title { color: var(--nc); font-family: 'Orbitron', sans-serif; text-align: center; margin-bottom: 10px; letter-spacing: 2px; }
 .modal-desc { color: #b0b8d0; font-size: 12px; margin-bottom: 15px; text-align: center; }
 .modal-textarea { width: 100%; height: 200px; background: rgba(2,2,8,0.9); color: var(--nl); border: 1px solid rgba(0,240,255,0.3); border-radius: 6px; padding: 10px; font-family: Consolas, monospace; resize: none; }
 .modal-btns { text-align: center; margin-top: 15px; display: flex; gap: 10px; justify-content: center; }
-.modal-btn { padding: 10px 22px; border-radius: 6px; cursor: pointer; font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border: none; transition: .25s; }
+.modal-btn { padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; border: none; }
 .modal-btn-copy { background: var(--nl); color: #020208; }
-.modal-btn-copy:hover { box-shadow: 0 0 16px rgba(57,255,20,.5); }
 .modal-btn-close { background: var(--np); color: #fff; }
-.modal-btn-close:hover { box-shadow: 0 0 16px rgba(255,20,147,.5); }
 
-/* ================= TOAST (Tab 2) ================= */
-.toast { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%) translateY(100px); background: linear-gradient(135deg, rgba(255,193,7,.13), rgba(155,92,255,.12)); backdrop-filter: blur(15px); border: 1px solid var(--gold); color: #fff; padding: 12px 22px; border-radius: 9px; font-size: 11px; font-weight: 850; font-family: 'Segoe UI', Tahoma, sans-serif; letter-spacing: .5px; opacity: 0; pointer-events: none; transition: .3s; box-shadow: 0 0 12px rgba(255,193,7,.3), 0 0 30px rgba(155,92,255,.1); z-index: 9999; }
-.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+/* ================================================================
+   [C] TAB BAR — satu-satunya tampilan baru (untuk pindah tab)
+================================================================ */
+.tabbar { display: flex; gap: 10px; margin-bottom: 22px; padding: 6px; background: var(--panel); border: 1px solid rgba(0,240,255,.12); border-radius: 14px; position: relative; overflow: hidden; }
+.tabbar::after { content: ""; position: absolute; bottom: 0; left: 2%; right: 2%; height: 2px; background: linear-gradient(90deg, transparent, var(--nc), var(--nm), var(--nl), var(--na), var(--np), var(--nc), transparent); background-size: 300% auto; animation: stF 2s linear infinite; box-shadow: 0 0 10px var(--nc); }
+.tab-btn { flex: 1; background: rgba(2,2,8,.6); border: 1px solid rgba(0,240,255,.08); color: #5a6480; padding: 14px 10px; border-radius: 9px; font-size: 11px; }
+.tab-btn:hover { color: #9aa4c0; border-color: rgba(0,240,255,.3); }
+.tab-btn.active { color: var(--nc); border-color: var(--nc); background: linear-gradient(135deg, rgba(0,240,255,.12), rgba(255,0,222,.10)); box-shadow: 0 0 16px rgba(0,240,255,.25); text-shadow: 0 0 10px rgba(0,240,255,.6); }
+.tab-btn.tgold.active { color: var(--gold); border-color: var(--gold); background: linear-gradient(135deg, rgba(255,193,7,.14), rgba(255,143,0,.10)); box-shadow: 0 0 16px rgba(255,193,7,.3); text-shadow: 0 0 10px rgba(255,193,7,.6); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; animation: tabIn .4s ease; }
+@keyframes tabIn { from { opacity: 0; } to { opacity: 1; } }
 
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #020208; }
-::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--nc), var(--nm)); border-radius: 3px; }
+/* ================================================================
+   [D] STYLE FILE 2 (KACAU / GOLD) — isinya verbatim.
+       Yang disesuaikan HANYA selector global yang bentrok:
+       - body            -> #tab2 (plus nilai variabel gold dipulihkan)
+       - *               -> .gold * (font Segoe UI khusus area gold)
+       - body::before    -> .g-grid  (grid emas, jadi elemen di dlm tab)
+       - body::after     -> .g-portal (portal emas, jadi elemen di dlm tab)
+       - textarea/table/th/td/tr -> diberi prefiks #tab2
+       - html{background:#050505} tidak dipakai (latar neon file 1 jadi dasar)
+================================================================ */
+#tab2{
+    --bg:#050505;
+    --panel:rgba(18,16,10,.88);
+    --text:#f5f1df;
+    --muted:#8e8975;
+    --line:rgba(255,193,7,.25);
+    position:relative;
+    overflow:hidden;
+    border-radius:16px;
+    padding:10px 0 30px;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 15% 10%, rgba(255,193,7,.12), transparent 24%),
+        radial-gradient(circle at 85% 18%, rgba(155,92,255,.09), transparent 25%),
+        radial-gradient(circle at 50% 100%, rgba(255,143,0,.08), transparent 30%);
+}
+.gold *{ font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; }
+.gold button{ letter-spacing:normal; text-transform:none; }
 
-@media (max-width: 700px) {
-    .content { padding: 12px 10px 140px; }
-    .tabbar { gap: 6px; padding: 6px; }
-    .tab-btn { font-size: 9px; letter-spacing: 1px; padding: 12px 6px; }
-    .hdr-c { padding: 14px; gap: 10px; }
-    .hicon { font-size: 26px; }
-    .glitch { font-size: 12px !important; letter-spacing: 2px !important; }
-    .brow { flex-direction: column; gap: 8px; }
-    #tab1 button { width: 100%; }
-    #tab1 th, #tab1 td { font-size: 11px; padding: 8px 10px; }
-    #tab1 th:first-child { width: 64%; }
-    #tab1 th:last-child { width: 36%; }
-    .gpanel { flex-direction: column; gap: 20px; padding: 16px; }
-    .gr { width: 90px; height: 90px; }
-    .gv { font-size: 14px; }
-    .gn { height: 26px; }
-    .viz { height: 18px; }
-    .instrs { gap: 10px; }
-    .mgr { width: 34px; height: 34px; }
-    #tab2 { padding: 10px 6px; }
-    .togelon-logo { width: 180px; max-width: 75%; }
-    .neon-title h1 { font-size: 21px; letter-spacing: 5px; }
-    .textarea-wrapper { flex-direction: column; }
-    .action-btns { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); }
-    .stats-grid { grid-template-columns: 1fr; }
-    .table-header-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
-    .card { padding: 15px; }
-    #tab2 th, #tab2 td { padding: 10px; }
+/* grid emas (dari body::before file 2) */
+.g-grid{
+    position:absolute; inset:0; pointer-events:none; opacity:.45;
+    background-image:
+        linear-gradient(rgba(255,193,7,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,193,7,.035) 1px, transparent 1px);
+    background-size:42px 42px;
+    -webkit-mask-image:linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+    mask-image:linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+}
+/* portal emas (dari body::after file 2) */
+.g-portal{
+    position:absolute; width:620px; height:620px; left:50%; top:50%;
+    transform:translate(-50%,-50%); pointer-events:none;
+    border:1px solid rgba(255,193,7,.07); border-radius:50%;
+    box-shadow:
+        0 0 100px rgba(255,193,7,.035),
+        0 0 220px rgba(155,92,255,.025),
+        inset 0 0 120px rgba(255,193,7,.025);
+    animation:portal 14s linear infinite;
+}
+@keyframes portal{
+    0%{ transform:translate(-50%,-50%) rotate(0deg) scale(.88); }
+    50%{ transform:translate(-50%,-50%) rotate(180deg) scale(1.04); }
+    100%{ transform:translate(-50%,-50%) rotate(360deg) scale(.88); }
+}
+
+.container{ width:100%; max-width:1100px; margin:auto; display:flex; flex-direction:column; gap:18px; position:relative; }
+.neon-title{ text-align:center; padding:5px 0 12px; }
+.neon-title h1{ font-size:31px; font-weight:950; letter-spacing:8px; color:#fff3b0; text-shadow:0 0 5px #fff, 0 0 13px var(--gold), 0 0 30px var(--gold2), 0 0 60px rgba(255,143,0,.35); animation:titleGlow 2.8s ease-in-out infinite alternate; }
+.neon-title span{ display:block; margin-top:6px; font-size:9px; letter-spacing:4px; color:#d8c77d; opacity:.78; }
+@keyframes titleGlow{ from{ filter:brightness(.9); } to{ filter:brightness(1.25); } }
+.togelon-logo{ display:block; width:100%; max-width:520px; height:auto; margin:0 auto 10px; object-fit:contain; filter:drop-shadow(0 0 5px rgba(255,255,255,.75)) drop-shadow(0 0 14px rgba(255,193,7,.65)) drop-shadow(0 0 32px rgba(255,143,0,.35)); animation:logoGlow 2.8s ease-in-out infinite alternate; }
+@keyframes logoGlow{
+    from{ filter:drop-shadow(0 0 4px rgba(255,255,255,.65)) drop-shadow(0 0 10px rgba(255,193,7,.45)); transform:scale(.99); }
+    to{ filter:drop-shadow(0 0 7px rgba(255,255,255,.9)) drop-shadow(0 0 18px rgba(255,193,7,.75)) drop-shadow(0 0 34px rgba(255,143,0,.4)); transform:scale(1.005); }
+}
+.card{ position:relative; background:linear-gradient(135deg, rgba(255,193,7,.055), rgba(155,92,255,.025), rgba(255,143,0,.025)), var(--panel); backdrop-filter:blur(18px); border:1px solid var(--line); border-radius:15px; padding:20px; overflow:hidden; box-shadow:0 0 0 1px rgba(255,193,7,.025), 0 15px 45px rgba(0,0,0,.45), inset 0 0 30px rgba(255,193,7,.018); }
+.card::before{ content:""; position:absolute; top:0; left:-40%; width:38%; height:1px; background:linear-gradient(90deg, transparent, var(--gold), #fff, var(--purple), transparent); box-shadow:0 0 10px var(--gold); animation:scanLine 5.5s linear infinite; }
+@keyframes scanLine{ from{ left:-40%; } to{ left:140%; } }
+.section-header{ display:flex; align-items:center; gap:8px; font-size:12px; font-weight:850; color:var(--gold); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:15px; text-shadow:0 0 9px rgba(255,193,7,.5); }
+.textarea-wrapper{ display:flex; gap:15px; }
+#tab2 textarea{ width:100%; height:145px; background:linear-gradient(135deg, rgba(255,193,7,.025), rgba(155,92,255,.018)), rgba(0,0,0,.86); border:1px solid rgba(255,193,7,.25); border-radius:11px; color:#ffe999; font-family:'Courier New',monospace; font-size:12px; padding:14px; resize:vertical; outline:none; box-shadow:inset 0 0 20px rgba(255,193,7,.025); transition:.25s; }
+#tab2 textarea::placeholder{ color:#665e48; }
+#tab2 textarea:focus{ border-color:var(--gold); box-shadow:0 0 6px var(--gold), 0 0 22px rgba(255,193,7,.16), inset 0 0 20px rgba(255,193,7,.035); }
+.action-btns{ display:flex; flex-direction:column; gap:9px; width:150px; }
+.action-btn, .table-action-btn{ position:relative; background:linear-gradient(135deg, rgba(255,193,7,.07), rgba(155,92,255,.035)); border:1px solid rgba(255,193,7,.28); color:#bdb49a; padding:11px 15px; border-radius:8px; font-size:10px; font-weight:800; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:7px; transition:.25s; overflow:hidden; }
+.action-btn::before{ content:""; position:absolute; inset:0; background:linear-gradient(90deg, transparent, rgba(255,255,255,.13), transparent); transform:translateX(-100%); transition:.45s; }
+.action-btn:hover::before{ transform:translateX(100%); }
+.action-btn:hover, .table-action-btn:hover{ color:#fff; border-color:var(--gold); box-shadow:0 0 8px rgba(255,193,7,.35), 0 0 22px rgba(255,193,7,.08); transform:translateY(-2px); }
+.hasil-btn{ color:#fff3b0; background:linear-gradient(135deg, rgba(255,193,7,.2), rgba(255,143,0,.11), rgba(155,92,255,.07)); border-color:var(--gold); text-shadow:0 0 8px rgba(255,193,7,.8); box-shadow:0 0 9px rgba(255,193,7,.22), inset 0 0 15px rgba(255,193,7,.035); }
+.hasil-btn:hover{ border-color:#fff; box-shadow:0 0 9px var(--gold), 0 0 28px rgba(255,193,7,.28); }
+.hasil-btn.success{ background:linear-gradient(135deg, #b77900, #6b3fc0); border-color:#fff; box-shadow:0 0 12px var(--gold), 0 0 28px rgba(155,92,255,.4); }
+.stats-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:15px; }
+.stat-card{ position:relative; background:linear-gradient(135deg, rgba(255,193,7,.065), rgba(155,92,255,.025)), rgba(14,13,10,.86); border:1px solid rgba(255,193,7,.18); border-radius:12px; padding:16px 20px; display:flex; align-items:center; justify-content:space-between; box-shadow:inset 0 0 20px rgba(255,193,7,.018), 0 10px 25px rgba(0,0,0,.25); transition:.25s; }
+.stat-card:hover{ border-color:rgba(255,193,7,.48); box-shadow:0 0 18px rgba(255,193,7,.1), inset 0 0 20px rgba(255,193,7,.035); }
+.stat-icon{ padding:12px; border-radius:9px; display:flex; align-items:center; justify-content:center; box-shadow:0 0 12px currentColor; }
+.stat-text{ text-align:right; }
+.stat-value{ font-size:23px; font-weight:950; color:#fff4bf; text-shadow:0 0 10px rgba(255,193,7,.18); }
+.stat-label{ font-size:9px; color:#8e8975; text-transform:uppercase; font-weight:800; letter-spacing:1px; margin-top:3px; }
+.table-header-bar{ display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid rgba(255,193,7,.1); padding-bottom:10px; }
+.table-actions{ display:flex; gap:8px; }
+.table-action-btn{ padding:8px 13px; background:rgba(255,193,7,.045); }
+.table-responsive{ overflow-x:auto; }
+#tab2 table{ width:100%; border-collapse:collapse; font-size:11px; }
+#tab2 th{ color:var(--gold); padding:13px 15px; font-weight:850; text-transform:uppercase; border-bottom:1px solid rgba(255,193,7,.3); text-align:left; font-size:9px; letter-spacing:1px; text-shadow:0 0 7px rgba(255,193,7,.4); }
+#tab2 td{ padding:13px 15px; border-bottom:1px solid rgba(255,255,255,.035); color:#c9c2ad; }
+#tab2 tr{ transition:.2s; }
+#tab2 tr:hover td{ background:linear-gradient(90deg, rgba(255,193,7,.045), rgba(155,92,255,.035)); color:#fff; }
+.bank-badge{ font-weight:900; padding:4px 9px; border-radius:5px; text-align:center; font-size:9px; letter-spacing:.6px; display:inline-block; min-width:60px; box-shadow:0 0 8px rgba(255,255,255,.1); }
+.bank-bni{ background:#fbbf24; color:#000; }
+.bank-bca{ background:#0758a8; color:#fff; }
+.bank-seabank{ background:#00d9ff; color:#001015; }
+.bank-mandiri{ background:#ff7b00; color:#fff; }
+.bank-bri{ background:#0646c0; color:#fff; }
+.bank-cimb{ background:#7b32d1; color:#fff; }
+.bank-dana{ background:#00bfe8; color:#001015; }
+.bank-ovo{ background:#8b45d8; color:#fff; }
+.bank-linkaja{ background:#e52c55; color:#fff; }
+.bank-gopay{ background:#00b9dc; color:#001015; }
+.bank-default{ background:#34312a; color:#fff; }
+.empty-row{ text-align:center; color:#655f50; padding:45px; font-style:italic; letter-spacing:.5px; }
+.footer{ margin-top:5px; text-align:center; font-size:9px; color:#625c4e; letter-spacing:2px; text-shadow:0 0 8px rgba(255,193,7,.12); }
+.footer span{ color:var(--gold)!important; }
+.toast{ position:fixed; bottom:25px; left:50%; transform:translateX(-50%) translateY(100px); background:linear-gradient(135deg, rgba(255,193,7,.13), rgba(155,92,255,.12)); backdrop-filter:blur(15px); border:1px solid var(--gold); color:#fff; padding:12px 22px; border-radius:9px; font-size:11px; font-weight:850; letter-spacing:.5px; opacity:0; pointer-events:none; transition:.3s; box-shadow:0 0 12px rgba(255,193,7,.3), 0 0 30px rgba(155,92,255,.1); z-index:9999; }
+.toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+/* ================================================================
+   [E] RESPONSIVE — gabungan media query kedua file
+       (hanya selector th/td/button yang di-prefix per tab)
+================================================================ */
+@media (max-width:700px){
+    /* file 1 */
+    .content{ padding:12px 10px 140px; }
+    .tabbar{ gap:6px; }
+    .tab-btn{ font-size:9px; letter-spacing:1px; padding:12px 6px; }
+    .hdr-c{ padding:14px; gap:10px; }
+    .hicon{ font-size:26px; }
+    .glitch{ font-size:12px !important; letter-spacing:2px !important; }
+    .brow{ flex-direction:column; gap:8px; }
+    #tab1 button, .modal-btn{ width:100%; }
+    #tab1 th, #tab1 td{ font-size:11px; padding:8px 10px; }
+    #tab1 th:first-child{ width:64%; }
+    #tab1 th:last-child{ width:36%; }
+    .gpanel{ flex-direction:column; gap:20px; padding:16px; }
+    .gr{ width:90px; height:90px; }
+    .gv{ font-size:14px; }
+    .gn{ height:26px; }
+    .viz{ height:18px; }
+    .instrs{ gap:10px; }
+    .mgr{ width:34px; height:34px; }
+    /* file 2 */
+    #tab2{ padding:6px 0 20px; }
+    .togelon-logo{ width:180px; max-width:75%; }
+    .neon-title h1{ font-size:21px; letter-spacing:5px; }
+    .textarea-wrapper{ flex-direction:column; }
+    .action-btns{ width:100%; display:grid; grid-template-columns:repeat(3,1fr); }
+    .stats-grid{ grid-template-columns:1fr; }
+    .table-header-bar{ flex-direction:column; align-items:flex-start; gap:10px; }
+    .card{ padding:15px; }
+    #tab2 th, #tab2 td{ padding:10px; }
 }
 </style>
 </head>
 <body>
+    <!-- ===== LATAR FILE 1 — verbatim ===== -->
     <div class="wallpaper"><img src="https://togelon.com/asset/togel-on-com-image-model.png"></div>
     <div class="nebula"></div><div class="aurora"></div><div class="matrix" id="matrix"></div><div class="road-wrap" id="roadWrap"><div class="road"></div></div><div class="fog"></div><div class="ltng" id="ltng"></div><div class="embers" id="embers"></div>
-    <div class="gold-portal"></div>
 
     <div class="content">
 
-        <!-- ===== TAB BAR ===== -->
+        <!-- ===== TAB BAR (baru) ===== -->
         <div class="tabbar">
-            <button class="tab-btn active" onclick="switchTab('tab1', this)">&#9851; SC DEPO BCA</button>
-            <button class="tab-btn tgold" onclick="switchTab('tab2', this)">&#9889; KACAU (PENDING)</button>
+            <button class="tab-btn active" onclick="showTab('tab1', this)">&#9851; SC DEPO BCA</button>
+            <button class="tab-btn tgold" onclick="showTab('tab2', this)">&#9889; KACAU (PENDING)</button>
         </div>
 
-        <!-- ===== TAB 1 : SC DEPO BCA ===== -->
+        <!-- ===== TAB 1 : SC DEPO BCA — HTML file 1 verbatim ===== -->
         <div id="tab1" class="tab-panel active">
             <div class="hdr"><div class="nf"><div class="hdr-c"><span class="hicon">&#9851;</span><h1 class="glitch" data-text="Dashboard Rekening" style="font-size:clamp(14px,3vw,24px)">13/08</h1><div class="leds"><span class="led lc"></span><span class="led lm"></span><span class="led ll"></span><span class="led la"></span><span class="led lp"></span></div></div><div class="viz" id="viz"></div><div class="instrs"><div class="mg mgc"><div class="mgr"><span class="mgv">88</span></div><span class="mglb">Speed</span></div><div class="mg mga"><div class="mgr"><span class="mgv">4.2</span></div><span class="mglb">RPM</span></div><div class="mg mgl"><div class="mgr"><span class="mgv">72</span></div><span class="mglb">Temp</span></div><div class="mg mgp"><div class="mgr"><span class="mgv">F</span></div><span class="mglb">Fuel</span></div></div></div></div>
             <div class="isec"><div class="nf"><div class="nfi"><label class="ilbl" for="rawInput"><span class="led lc" style="width:5px;height:5px"></span>Input Data Mutasi</label><textarea id="rawInput" placeholder="Paste teks mutasi BCA di sini..."></textarea><div class="brow">
-                <button class="bgo" onclick="processCleanData()">&#9654; Proses Data</button>
-                <button class="bcopy" onclick="copyCleanData()">&#128203; Copy Hasil</button>
-                <button class="bcl" onclick="clearAllData()">&#10005; Bersihkan</button>
+            <button class="bgo" onclick="processCleanData()">&#9654; Proses Data</button>
+            <button class="bcopy" onclick="copyCleanData()">&#128203; Copy Hasil</button>
+            <button class="bcl" onclick="clearAllData()">&#10005; Bersihkan</button>
             </div><div id="status" class="status"></div></div></div></div>
             <div class="gsec" id="gsec" style="display:none"><div class="nf"><div class="gpanel"><div class="g gc"><div class="gr"><div class="gdk"></div><div class="gtkw" id="tkC"></div><div class="gn"></div><div class="gdt"></div></div><span class="gv" id="totalCount">0</span><span class="glb">Transaksi</span></div><div class="g ga"><div class="gr"><div class="gdk"></div><div class="gtkw" id="tkA"></div><div class="gn"></div><div class="gdt"></div></div><span class="gv" id="totalNominal" style="font-size:13px">0</span><span class="glb">Total Nominal</span></div></div></div></div>
             <div class="tsec"><div class="nf"><div class="tc"><div class="tstrip"></div><table><thead><tr><th>NAMA REKENING</th><th>NOMINAL</th></tr></thead><tbody id="cleanResultBody"><tr class="erow"><td colspan="2">Belum ada data</td></tr></tbody></table></div></div></div>
         </div>
 
-        <!-- ===== TAB 2 : KACAU (PENDING) ===== -->
-        <div id="tab2" class="tab-panel">
+        <!-- ===== TAB 2 : KACAU — HTML file 2 verbatim ===== -->
+        <div id="tab2" class="tab-panel gold">
+            <div class="g-grid"></div>
+            <div class="g-portal"></div>
             <div class="container">
+
                 <div class="neon-title">
-                    <img src="https://cdn.areabermain.club/assets/cdn/az7/2026/09/08/20260908/02ad14f5aae8f8547c74814dcdc1b131/slider-banner-togelup-bonus-terbaik.png" alt="Togel On" class="togelon-logo" loading="eager">
+                    <img src="https://togelon.com/asset/togel-on-com-image-model.png" alt="Togel On" class="togelon-logo" loading="eager">
                     <span></span>
                 </div>
 
                 <div class="card">
-                    <div class="section-header"><i data-lucide="radio" size="15" style="color:#ffd54a"></i> TEMPEL DATA DISINI YA BOSKU</div>
+                    <div class="section-header">
+                        <i data-lucide="radio" size="15" style="color:#ffd54a"></i>
+                        TEMPEL DATA DISINI YA BOSKU
+                    </div>
                     <div class="textarea-wrapper">
                         <textarea id="dataInput" oninput="parseExcelData()" placeholder="Tempel data transaksi pending di sini..."></textarea>
                         <div class="action-btns">
-                            <button class="action-btn" onclick="pasteText()"><i data-lucide="clipboard" size="14"></i> PASTE</button>
-                            <button class="action-btn hasil-btn" onclick="copyHasil(this)"><i data-lucide="zap" size="14"></i> HASIL</button>
-                            <button class="action-btn" onclick="clearAll()"><i data-lucide="trash-2" size="14"></i> CLEAR</button>
+                            <button class="action-btn" onclick="pasteText()">
+                                <i data-lucide="clipboard" size="14"></i>
+                                PASTE
+                            </button>
+                            <button class="action-btn hasil-btn" onclick="copyHasil(this)">
+                                <i data-lucide="zap" size="14"></i>
+                                HASIL
+                            </button>
+                            <button class="action-btn" onclick="clearAll()">
+                                <i data-lucide="trash-2" size="14"></i>
+                                CLEAR
+                            </button>
                         </div>
                     </div>
                 </div>
 
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-icon" style="background:rgba(255,193,7,.08);color:#ffd54a;"><i data-lucide="activity" size="23"></i></div>
+                        <div class="stat-icon" style="background:rgba(255,193,7,.08);color:#ffd54a;">
+                            <i data-lucide="activity" size="23"></i>
+                        </div>
                         <div class="stat-text">
                             <div class="stat-value" id="pendingCount">0</div>
                             <div class="stat-label">Pending Records</div>
                         </div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon" style="background:rgba(77,255,154,.08);color:#4dff9a;"><i data-lucide="wallet" size="23"></i></div>
+                        <div class="stat-icon" style="background:rgba(77,255,154,.08);color:#4dff9a;">
+                            <i data-lucide="wallet" size="23"></i>
+                        </div>
                         <div class="stat-text">
                             <div class="stat-value" id="totalAmount">Rp 0</div>
                             <div class="stat-label">Total Nominal</div>
@@ -349,28 +446,56 @@ body.tab2-on .gold-portal { display: block; }
 
                 <div class="card">
                     <div class="table-header-bar">
-                        <div class="section-header" style="margin-bottom:0;"><i data-lucide="database" size="16"></i> HASIL DATA</div>
+                        <div class="section-header" style="margin-bottom:0;">
+                            <i data-lucide="database" size="16"></i>
+                            HASIL DATA
+                        </div>
                         <div class="table-actions">
-                            <button class="table-action-btn" onclick="copyHasil(this)"><i data-lucide="copy" size="13"></i> COPY HASIL</button>
+                            <button class="table-action-btn" onclick="copyHasil(this)">
+                                <i data-lucide="copy" size="13"></i>
+                                COPY HASIL
+                            </button>
                         </div>
                     </div>
                     <div class="table-responsive">
                         <table>
-                            <thead><tr><th>Bank</th><th>No/Status</th><th>Member Code</th><th>Nama Rek</th><th style="text-align:right">Nominal</th></tr></thead>
+                            <thead>
+                                <tr>
+                                    <th>Bank</th>
+                                    <th>No/Status</th>
+                                    <th>Member Code</th>
+                                    <th>Nama Rek</th>
+                                    <th style="text-align:right">Nominal</th>
+                                </tr>
+                            </thead>
                             <tbody id="table-body">
-                                <tr><td colspan="5" class="empty-row">⟡ DATA KOSONG ⟡<br>Tempel data transaksi untuk memulai sistem.</td></tr>
+                                <tr>
+                                    <td colspan="5" class="empty-row">
+                                        ⟡ DATA KOSONG ⟡
+                                        <br>
+                                        Tempel data transaksi
+                                        untuk memulai sistem.
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <div class="footer">◈ BLACK GOLD PWR SYSTEM ◈ <span>ONLINE</span> ◈ SECURED ◈</div>
+                <div class="footer">
+                    ◈ BLACK GOLD PWR SYSTEM ◈
+                    <span>ONLINE</span>
+                    ◈ SECURED ◈
+                </div>
+
             </div>
+
+            <div id="toast" class="toast">✓ Hasil berhasil di-copy!</div>
         </div>
 
     </div>
 
-    <!-- Modal salin manual (Tab 1) -->
+    <!-- ===== Modal file 1 — verbatim ===== -->
     <div id="copyModal" class="modal-overlay">
         <div class="modal-box">
             <h3 class="modal-title">SALIN MANUAL</h3>
@@ -383,11 +508,11 @@ body.tab2-on .gold-portal { display: block; }
         </div>
     </div>
 
-    <!-- Toast (Tab 2) -->
-    <div id="toast" class="toast">✓ Hasil berhasil di-copy!</div>
-
 <script>
-/* ============ EFEK LATAR (Tab 1) ============ */
+/* ================================================================
+   SCRIPT 1 — SC DEPO BCA
+   DI-SALIN PERSIS DARI FILE ASLI ANDA. TIDAK ADA YANG DIUBAH.
+================================================================ */
 (function(){const m=document.getElementById("matrix");for(let i=0;i<16;i++){const c=document.createElement("div");c.className="mcol";c.style.left=(i/16*100)+"%";let s="";for(let j=0;j<50;j++)s+=String.fromCharCode(0x30A0+Math.random()*96);c.textContent=s;c.style.animationDuration=(8+Math.random()*12)+"s";c.style.animationDelay=Math.random()*8+"s";m.appendChild(c)}})();
 (function(){const r=document.getElementById("roadWrap");const co=["var(--nc)","var(--nm)","var(--na)"];for(let i=0;i<6;i++){const l=document.createElement("div");l.className="spdln";l.style.top=(50+Math.random()*40)+"%";l.style.width=(80+Math.random()*180)+"px";l.style.background="linear-gradient(90deg,transparent,"+co[i%3]+",transparent)";l.style.opacity=0.05+Math.random()*0.05;l.style.animationDuration=(1.5+Math.random()*2)+"s";l.style.animationDelay=Math.random()*4+"s";r.appendChild(l)}})();
 (function(){const e=document.getElementById("embers");const co=["#00f0ff","#ff00de","#39ff14","#ffae00","#ff1493"];for(let i=0;i<28;i++){const p=document.createElement("div");p.className="embr";p.style.left=Math.random()*100+"%";p.style.bottom="-5px";const sz=1+Math.random()*2.5;p.style.width=p.style.height=sz+"px";const c=co[Math.floor(Math.random()*5)];p.style.background=c;p.style.boxShadow="0 0 6px "+c;p.style.animationDuration=(10+Math.random()*14)+"s";p.style.animationDelay=Math.random()*12+"s";e.appendChild(p)}})();
@@ -395,18 +520,6 @@ body.tab2-on .gold-portal { display: block; }
 (function(){const v=document.getElementById("viz");const co=["var(--nc)","var(--nm)","var(--nl)","var(--na)","var(--np)"];for(let i=0;i<45;i++){const b=document.createElement("div");b.className="vb";b.style.background=co[Math.floor(i/9)%5];b.style.boxShadow="0 0 3px "+co[Math.floor(i/9)%5];b.style.animationDuration=(0.25+Math.random()*0.45)+"s";b.style.animationDelay=(i*0.03)+"s";v.appendChild(b)}})();
 (function(){["tkC","tkA"].forEach(function(id){const el=document.getElementById(id);if(!el)return;for(let i=0;i<14;i++){const t=document.createElement("div");t.className="gtk";t.style.transform="rotate("+(i*25.7)+"deg)";el.appendChild(t)}})})();
 
-/* ============ SISTEM TAB ============ */
-function refreshIcons(){ if(window.lucide){ try{ lucide.createIcons(); }catch(e){} } }
-function switchTab(id, el){
-    document.querySelectorAll(".tab-panel").forEach(function(p){ p.classList.remove("active"); });
-    document.getElementById(id).classList.add("active");
-    document.querySelectorAll(".tab-btn").forEach(function(b){ b.classList.remove("active"); });
-    if(el) el.classList.add("active");
-    document.body.classList.toggle("tab2-on", id === "tab2");
-    if(id === "tab2") refreshIcons();
-}
-
-/* ============ TAB 1 : PARSER MUTASI BCA ============ */
 function formatNominal(n){const v=Number(n);if(!Number.isFinite(v))return"0";return Math.round(v).toLocaleString("en-US")}
 function parseNom(s){s=String(s).replace(/,/g,"");const v=parseFloat(s);if(isNaN(v)||v<=0)return null;return v}
 
@@ -445,7 +558,7 @@ function processCleanData(){
     const gs = document.getElementById("gsec");
     const tc = document.getElementById("totalCount");
     const tn = document.getElementById("totalNominal");
-
+    
     rb.innerHTML = ""; st.textContent = ""; st.className = "status"; gs.style.display = "none";
     if(!raw){
         rb.innerHTML = '<tr class="erow"><td colspan="2">Tidak ada data</td></tr>';
@@ -462,12 +575,14 @@ function processCleanData(){
     }
 
     const results = [];
-
+    
     function addResult(name, nom){
         if(!name || nom === null || nom <= 0) return;
         results.push({ name: name, nominal: nom });
     }
 
+    // LOOP GABUNGAN TUNGGAL
+    // Menghapus fitur anti-duplikat sehingga semua transaksi dengan nominal sama tetap terbaca semua.
     for(let i = 0; i < trimmed.length; i++){
         if(!/^CR$/i.test(trimmed[i])) continue;
         if(i < 1) continue;
@@ -587,7 +702,9 @@ async function copyCleanData() {
         try {
             await navigator.clipboard.writeText(textToCopy);
             copied = true;
-        } catch (e) { /* lanjut ke fallback */ }
+        } catch (e) {
+            // Lanjut ke fallback
+        }
     }
 
     if (!copied) {
@@ -603,7 +720,9 @@ async function copyCleanData() {
             const successful = document.execCommand('copy');
             document.body.removeChild(textArea);
             if (successful) copied = true;
-        } catch (err) { /* lanjut ke modal manual */ }
+        } catch (err) {
+            // Lanjut ke modal manual
+        }
     }
 
     if (!copied) {
@@ -642,235 +761,1047 @@ function clearAllData(){
     st.textContent = "";
     st.className = "status";
 }
+</script>
 
-/* ============ TAB 2 : PARSER PENDING (KACAU) ============ */
+<script>
+/* ================================================================
+   SCRIPT 2 — KACAU / PENDING
+   DI-SALIN PERSIS DARI FILE ASLI ANDA. TIDAK ADA YANG DIUBAH.
+================================================================ */
+
 let parsedList = [];
 
-function applyEwalletPrefix(bank, noRek){
-    if(noRek === '-' || noRek.includes('*')) return noRek;
-    let upperBank = bank.toUpperCase();
-    let finalNoRek = noRek;
-    if(upperBank === 'DANA' || upperBank === 'DANA2'){
-        if(!finalNoRek.startsWith('3901')) finalNoRek = '3901' + finalNoRek;
-    } else if(upperBank === 'GOPAY'){
-        if(!finalNoRek.startsWith('70001')) finalNoRek = '70001' + finalNoRek;
-    } else if(upperBank === 'OVO'){
-        if(!finalNoRek.startsWith('39358')) finalNoRek = '39358' + finalNoRek;
-    } else if(upperBank === 'LINKAJA'){
-        if(!finalNoRek.startsWith('09110')) finalNoRek = '09110' + finalNoRek;
+
+/* =========================================
+   E-WALLET PREFIX
+========================================= */
+
+function applyEwalletPrefix(bank,noRek){
+
+    if(
+        noRek === '-' ||
+        noRek.includes('*')
+    ){
+        return noRek;
     }
+
+    let upperBank =
+        bank.toUpperCase();
+
+    let finalNoRek =
+        noRek;
+
+
+    if(
+        upperBank === 'DANA' ||
+        upperBank === 'DANA2'
+    ){
+
+        if(
+            !finalNoRek.startsWith('3901')
+        ){
+
+            finalNoRek =
+                '3901' + finalNoRek;
+
+        }
+
+    }
+
+    else if(
+        upperBank === 'GOPAY'
+    ){
+
+        if(
+            !finalNoRek.startsWith('70001')
+        ){
+
+            finalNoRek =
+                '70001' + finalNoRek;
+
+        }
+
+    }
+
+    else if(
+        upperBank === 'OVO'
+    ){
+
+        if(
+            !finalNoRek.startsWith('39358')
+        ){
+
+            finalNoRek =
+                '39358' + finalNoRek;
+
+        }
+
+    }
+
+    else if(
+        upperBank === 'LINKAJA'
+    ){
+
+        if(
+            !finalNoRek.startsWith('09110')
+        ){
+
+            finalNoRek =
+                '09110' + finalNoRek;
+
+        }
+
+    }
+
     return finalNoRek;
 }
 
+
+/* =========================================
+   CLEAN NAMA
+========================================= */
+
 function cleanNama(text){
+
     return text
-        .replace(/\b(REVIEW|Erroroor|SOG|SYSTEM|null|APPROVED|REJECTED|PENDING|PROCESS)\b/gi, '')
-        .replace(/[_-]+/g, ' ')
-        .replace(/\s+/g, ' ')
+
+        .replace(
+            /\b(REVIEW|Erroroor|SOG|SYSTEM|null|APPROVED|REJECTED|PENDING|PROCESS)\b/gi,
+            ''
+        )
+
+        .replace(
+            /[_-]+/g,
+            ' '
+        )
+
+        .replace(
+            /\s+/g,
+            ' '
+        )
+
         .trim();
 }
 
+
+/* =========================================
+   PARSER
+========================================= */
+
 function parseExcelData(){
-    const rawText = document.getElementById('dataInput').value.trim();
-    if(!rawText){ parsedList = []; renderTable(); return; }
 
-    const lines = rawText.split(/\r?\n/);
-    parsedList = [];
+    const rawText =
+        document
+        .getElementById('dataInput')
+        .value
+        .trim();
 
-    lines.forEach(function(line){
-        const cleanLine = line.trim();
-        if(!cleanLine) return;
 
-        let cols = cleanLine.split('\t').map(function(c){ return c.trim(); });
-        while(cols.length && cols[0] === '') cols.shift();
-        while(cols.length && cols[cols.length - 1] === '') cols.pop();
+    if(!rawText){
 
-        let memberCode = '-', noRek = '-', nama = '-', bank = '-', nominal = '0';
+        parsedList = [];
 
-        if(cols[0] && (cols[0].toUpperCase() === 'STATUS' || cols[0].toUpperCase() === 'MEMBER CODE')) return;
+        renderTable();
 
-        if(cols.length >= 7 && /^(PENDING|PROCESS|APPROVED|REJECTED|REVIEW)$/i.test(cols[0])){
-            memberCode = cols[1] || '-';
-            noRek = cols[2] || '-';
-            nama = cleanNama(cols[3] || '-');
-            nominal = cols[4] || '0';
-            bank = cols[6] || '-';
-        } else {
-            const bankMatch = cleanLine.match(/\b(BCA|BRI|BNI|MANDIRI|DANA2|DANA|OVO|LINKAJA|GOPAY|CIMB|PERMATA|SEABANK)\b/i);
-            bank = bankMatch ? bankMatch[0].toUpperCase() : '-';
-
-            const nominalMatch = cleanLine.match(/\b\d{1,3}(?:,\d{3})+(?:\.\d{2})?\b/) || cleanLine.match(/\b\d{1,3}(?:[.,]\d{3})+\b/);
-            if(nominalMatch) nominal = nominalMatch[0];
-
-            const noRekMatch = cleanLine.match(/\b[\d*]{3,20}\b/g);
-            if(noRekMatch){
-                noRek = noRekMatch.sort(function(a, b){
-                    return b.replace(/\*/g, '').length - a.replace(/\*/g, '').length;
-                })[0];
-            }
-
-            let textClean = cleanLine;
-            if(bank !== '-') textClean = textClean.replace(new RegExp(bank, 'gi'), '');
-            if(nominal !== '0') textClean = textClean.replace(nominal, '');
-            if(noRek !== '-') textClean = textClean.replace(noRek, ' ');
-
-            textClean = textClean
-                .replace(/\b(PROCESS|PENDING|APPROVED|REJECTED|REVIEW|null|SYSTEM|id_\d+)\b/gi, '')
-                .replace(/\b\d{2}\/\d{2}\/\d{4}\s\d{2}:\d{2}:\d{2}\b/g, '')
-                .replace(/[.,]/g, '')
-                .trim();
-
-            const parts = textClean.split(/\s+/).filter(Boolean);
-            if(parts.length){
-                memberCode = parts[0];
-                if(parts.length > 1) nama = cleanNama(parts.slice(1).join(' '));
-            }
-        }
-
-        if(memberCode !== '-' && bank !== '-'){
-            parsedList.push({
-                memberCode: memberCode,
-                bank: bank,
-                noRek: applyEwalletPrefix(bank, noRek),
-                nama: nama,
-                nominal: nominal
-            });
-        }
-    });
-
-    renderTable();
-}
-
-function renderTable(){
-    const tbody = document.getElementById('table-body');
-    tbody.innerHTML = '';
-
-    if(!parsedList.length){
-        tbody.innerHTML = '<tr><td colspan="5" class="empty-row">⟡ DATA KOSONG ⟡<br>Tempel data transaksi untuk memulai sistem.</td></tr>';
-        document.getElementById('pendingCount').innerText = '0';
-        document.getElementById('totalAmount').innerText = 'Rp 0';
-        refreshIcons();
         return;
     }
+
+
+    const lines =
+        rawText.split(/\r?\n/);
+
+
+    parsedList = [];
+
+
+    lines.forEach(line => {
+
+        let cleanLine =
+            line.trim();
+
+
+        if(!cleanLine){
+            return;
+        }
+
+
+        let cols =
+            cleanLine
+            .split('\t')
+            .map(c => c.trim());
+
+
+        while(
+            cols.length &&
+            cols[0] === ''
+        ){
+            cols.shift();
+        }
+
+
+        while(
+            cols.length &&
+            cols[cols.length - 1] === ''
+        ){
+            cols.pop();
+        }
+
+
+        let memberCode = '-';
+
+        let noRek = '-';
+
+        let nama = '-';
+
+        let bank = '-';
+
+        let nominal = '0';
+
+
+        /* HEADER */
+
+        if(
+            cols[0] &&
+            (
+                cols[0].toUpperCase() ===
+                'STATUS'
+
+                ||
+
+                cols[0].toUpperCase() ===
+                'MEMBER CODE'
+            )
+        ){
+
+            return;
+        }
+
+
+        /* FORMAT TAB / EXCEL */
+
+        if(
+            cols.length >= 7 &&
+            /^(PENDING|PROCESS|APPROVED|REJECTED|REVIEW)$/i
+            .test(cols[0])
+        ){
+
+            memberCode =
+                cols[1] || '-';
+
+            noRek =
+                cols[2] || '-';
+
+            nama =
+                cleanNama(
+                    cols[3] || '-'
+                );
+
+            nominal =
+                cols[4] || '0';
+
+            bank =
+                cols[6] || '-';
+
+        }
+
+        /* FORMAT TEXT */
+
+        else{
+
+            let bankMatch =
+                cleanLine.match(
+                    /\b(BCA|BRI|BNI|MANDIRI|DANA2|DANA|OVO|LINKAJA|GOPAY|CIMB|PERMATA|SEABANK)\b/i
+                );
+
+
+            bank =
+                bankMatch
+                ? bankMatch[0].toUpperCase()
+                : '-';
+
+
+            let nominalMatch =
+                cleanLine.match(
+                    /\b\d{1,3}(?:,\d{3})+(?:\.\d{2})?\b/
+                )
+
+                ||
+
+                cleanLine.match(
+                    /\b\d{1,3}(?:[.,]\d{3})+\b/
+                );
+
+
+            if(nominalMatch){
+
+                nominal =
+                    nominalMatch[0];
+
+            }
+
+
+            let noRekMatch =
+                cleanLine.match(
+                    /\b[\d*]{3,20}\b/g
+                );
+
+
+            if(noRekMatch){
+
+                noRek =
+                    noRekMatch.sort(
+                        (a,b) =>
+                            b.replace(/\*/g,'').length -
+                            a.replace(/\*/g,'').length
+                    )[0];
+
+            }
+
+
+            let textClean =
+                cleanLine;
+
+
+            if(bank !== '-'){
+
+                textClean =
+                    textClean.replace(
+                        new RegExp(bank,'gi'),
+                        ''
+                    );
+
+            }
+
+
+            if(nominal !== '0'){
+
+                textClean =
+                    textClean.replace(
+                        nominal,
+                        ''
+                    );
+
+            }
+
+
+            if(noRek !== '-'){
+
+                textClean =
+                    textClean.replace(
+                        noRek,
+                        ' '
+                    );
+
+            }
+
+
+            textClean =
+                textClean
+
+                .replace(
+                    /\b(PROCESS|PENDING|APPROVED|REJECTED|REVIEW|null|SYSTEM|id_\d+)\b/gi,
+                    ''
+                )
+
+                .replace(
+                    /\b\d{2}\/\d{2}\/\d{4}\s\d{2}:\d{2}:\d{2}\b/g,
+                    ''
+                )
+
+                .replace(
+                    /[.,]/g,
+                    ''
+                )
+
+                .trim();
+
+
+            let parts =
+                textClean
+                .split(/\s+/)
+                .filter(Boolean);
+
+
+            if(parts.length){
+
+                memberCode =
+                    parts[0];
+
+
+                if(parts.length > 1){
+
+                    nama =
+                        cleanNama(
+                            parts
+                            .slice(1)
+                            .join(' ')
+                        );
+
+                }
+
+            }
+
+        }
+
+
+        if(
+            memberCode !== '-' &&
+            bank !== '-'
+        ){
+
+            parsedList.push({
+
+                memberCode,
+
+                bank,
+
+                noRek:
+                    applyEwalletPrefix(
+                        bank,
+                        noRek
+                    ),
+
+                nama,
+
+                nominal
+
+            });
+
+        }
+
+    });
+
+
+    renderTable();
+
+}
+
+
+/* =========================================
+   RENDER TABLE
+========================================= */
+
+function renderTable(){
+
+    const tbody =
+        document.getElementById(
+            'table-body'
+        );
+
+
+    tbody.innerHTML = '';
+
+
+    if(!parsedList.length){
+
+        tbody.innerHTML = `
+
+        <tr>
+
+            <td
+                colspan="5"
+                class="empty-row"
+            >
+
+                ⟡ DATA KOSONG ⟡
+
+                <br>
+
+                Tempel data transaksi
+                untuk memulai sistem.
+
+            </td>
+
+        </tr>
+
+        `;
+
+
+        document
+        .getElementById('pendingCount')
+        .innerText = '0';
+
+
+        document
+        .getElementById('totalAmount')
+        .innerText = 'Rp 0';
+
+
+        lucide.createIcons();
+
+        return;
+    }
+
 
     let totalNominalSum = 0;
 
-    parsedList.forEach(function(item){
-        const cleanNominal = item.nominal.replace(/Rp\s?/gi, '').replace(/\.\d{2}$/, '').replace(/[.,]/g, '');
-        const numericNominal = parseInt(cleanNominal) || 0;
-        totalNominalSum += numericNominal;
 
-        let bankClass = 'bank-default';
-        if(item.bank.includes('BRI')) bankClass = 'bank-bri';
-        else if(item.bank.includes('BCA')) bankClass = 'bank-bca';
-        else if(item.bank.includes('BNI')) bankClass = 'bank-bni';
-        else if(item.bank.includes('MANDIRI')) bankClass = 'bank-mandiri';
-        else if(item.bank.includes('DANA')) bankClass = 'bank-dana';
-        else if(item.bank.includes('OVO')) bankClass = 'bank-ovo';
-        else if(item.bank.includes('LINKAJA')) bankClass = 'bank-linkaja';
-        else if(item.bank.includes('GOPAY')) bankClass = 'bank-gopay';
-        else if(item.bank.includes('SEABANK')) bankClass = 'bank-seabank';
+    parsedList.forEach(item => {
 
-        const tr = document.createElement('tr');
-        tr.innerHTML =
-            '<td><span class="bank-badge ' + bankClass + '">' + escapeHTML(item.bank) + '</span></td>' +
-            '<td style="font-family:monospace;letter-spacing:.5px">' + escapeHTML(item.noRek) + '</td>' +
-            '<td style="color:#ffd54a;font-weight:750;text-shadow:0 0 7px rgba(255,193,7,.35)">' + escapeHTML(item.memberCode) + '</td>' +
-            '<td style="text-transform:capitalize">' + escapeHTML(item.nama.toLowerCase()) + '</td>' +
-            '<td style="text-align:right;font-weight:950;color:#fff4bf;text-shadow:0 0 7px rgba(255,193,7,.22)">' + numericNominal.toLocaleString('en-US') + '</td>';
+        let cleanNominal =
+            item.nominal
+
+            .replace(
+                /Rp\s?/gi,
+                ''
+            )
+
+            .replace(
+                /\.\d{2}$/,
+                ''
+            )
+
+            .replace(
+                /[.,]/g,
+                ''
+            );
+
+
+        const numericNominal =
+            parseInt(cleanNominal) || 0;
+
+
+        totalNominalSum +=
+            numericNominal;
+
+
+        let bankClass =
+            'bank-default';
+
+
+        if(
+            item.bank.includes('BRI')
+        ){
+
+            bankClass =
+                'bank-bri';
+
+        }
+
+        else if(
+            item.bank.includes('BCA')
+        ){
+
+            bankClass =
+                'bank-bca';
+
+        }
+
+        else if(
+            item.bank.includes('BNI')
+        ){
+
+            bankClass =
+                'bank-bni';
+
+        }
+
+        else if(
+            item.bank.includes('MANDIRI')
+        ){
+
+            bankClass =
+                'bank-mandiri';
+
+        }
+
+        else if(
+            item.bank.includes('DANA')
+        ){
+
+            bankClass =
+                'bank-dana';
+
+        }
+
+        else if(
+            item.bank.includes('OVO')
+        ){
+
+            bankClass =
+                'bank-ovo';
+
+        }
+
+        else if(
+            item.bank.includes('LINKAJA')
+        ){
+
+            bankClass =
+                'bank-linkaja';
+
+        }
+
+        else if(
+            item.bank.includes('GOPAY')
+        ){
+
+            bankClass =
+                'bank-gopay';
+
+        }
+
+        else if(
+            item.bank.includes('SEABANK')
+        ){
+
+            bankClass =
+                'bank-seabank';
+
+        }
+
+
+        const tr =
+            document.createElement('tr');
+
+
+        tr.innerHTML = `
+
+            <td>
+
+                <span
+                    class="bank-badge ${bankClass}"
+                >
+
+                    ${escapeHTML(item.bank)}
+
+                </span>
+
+            </td>
+
+
+            <td
+                style="
+                    font-family:monospace;
+                    letter-spacing:.5px
+                "
+            >
+
+                ${escapeHTML(item.noRek)}
+
+            </td>
+
+
+            <td
+                style="
+                    color:#ffd54a;
+                    font-weight:750;
+                    text-shadow:
+                    0 0 7px
+                    rgba(255,193,7,.35)
+                "
+            >
+
+                ${escapeHTML(item.memberCode)}
+
+            </td>
+
+
+            <td
+                style="
+                    text-transform:capitalize
+                "
+            >
+
+                ${escapeHTML(
+                    item.nama.toLowerCase()
+                )}
+
+            </td>
+
+
+            <td
+                style="
+                    text-align:right;
+                    font-weight:950;
+                    color:#fff4bf;
+                    text-shadow:
+                    0 0 7px
+                    rgba(255,193,7,.22)
+                "
+            >
+
+                ${numericNominal.toLocaleString('en-US')}
+
+            </td>
+
+        `;
+
+
         tbody.appendChild(tr);
+
     });
 
-    document.getElementById('pendingCount').innerText = parsedList.length;
-    document.getElementById('totalAmount').innerText = 'Rp ' + totalNominalSum.toLocaleString('en-US');
-    refreshIcons();
+
+    document
+    .getElementById('pendingCount')
+    .innerText =
+        parsedList.length;
+
+
+    document
+    .getElementById('totalAmount')
+    .innerText =
+        'Rp ' +
+        totalNominalSum.toLocaleString('en-US');
+
+
+    lucide.createIcons();
+
 }
+
+
+/* =========================================
+   ESCAPE HTML
+========================================= */
 
 function escapeHTML(value){
+
     return String(value)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
+
+        .replace(
+            /&/g,
+            '&amp;'
+        )
+
+        .replace(
+            /</g,
+            '&lt;'
+        )
+
+        .replace(
+            />/g,
+            '&gt;'
+        )
+
+        .replace(
+            /"/g,
+            '&quot;'
+        )
+
+        .replace(
+            /'/g,
+            '&#039;'
+        );
+
 }
 
-async function copyHasil(button){
+
+/* =========================================
+   COPY HASIL
+========================================= */
+
+async function copyHasil(button=null){
+
     if(!parsedList.length){
-        showToast('⚠ Belum ada hasil untuk di-copy');
+
+        showToast(
+            '⚠ Belum ada hasil untuk di-copy'
+        );
+
         return;
     }
 
-    const hasil = parsedList.map(function(item){
-        const cleanNominal = item.nominal.replace(/Rp\s?/gi, '').replace(/\.\d{2}$/, '').replace(/[.,]/g, '');
-        const numericNominal = parseInt(cleanNominal) || 0;
-        return [item.bank, item.noRek, item.memberCode, item.nama, numericNominal.toLocaleString('en-US')].join('\t');
-    }).join('\n');
 
-    let ok = false;
+    const hasil =
+        parsedList
+
+        .map(item => {
+
+            let cleanNominal =
+                item.nominal
+
+                .replace(
+                    /Rp\s?/gi,
+                    ''
+                )
+
+                .replace(
+                    /\.\d{2}$/,
+                    ''
+                )
+
+                .replace(
+                    /[.,]/g,
+                    ''
+                );
+
+
+            const numericNominal =
+                parseInt(cleanNominal) || 0;
+
+
+            return [
+
+                item.bank,
+
+                item.noRek,
+
+                item.memberCode,
+
+                item.nama,
+
+                numericNominal
+                    .toLocaleString('en-US')
+
+            ].join('\t');
+
+        })
+
+        .join('\n');
+
+
     try{
-        await navigator.clipboard.writeText(hasil);
-        ok = true;
-    }catch(err){
-        const temp = document.createElement('textarea');
-        temp.value = hasil;
-        temp.style.position = 'fixed';
-        temp.style.opacity = '0';
-        document.body.appendChild(temp);
-        temp.focus();
-        temp.select();
-        try{ document.execCommand('copy'); ok = true; }catch(e){}
-        document.body.removeChild(temp);
+
+        await navigator
+            .clipboard
+            .writeText(hasil);
+
+
+        showToast(
+            `✓ ${parsedList.length} HASIL BERHASIL DI-COPY`
+        );
+
+
+        if(button){
+
+            const original =
+                button.innerHTML;
+
+
+            button.classList.add(
+                'success'
+            );
+
+
+            button.innerHTML = `
+
+                <i
+                    data-lucide="check"
+                    size="13"
+                ></i>
+
+                COPIED!
+
+            `;
+
+
+            lucide.createIcons();
+
+
+            setTimeout(() => {
+
+                button.classList.remove(
+                    'success'
+                );
+
+                button.innerHTML =
+                    original;
+
+                lucide.createIcons();
+
+            },1500);
+
+        }
+
     }
 
-    if(ok){
-        showToast('✓ ' + parsedList.length + ' HASIL BERHASIL DI-COPY');
-        if(button){
-            const original = button.innerHTML;
-            button.classList.add('success');
-            button.innerHTML = '<i data-lucide="check" size="13"></i> COPIED!';
-            refreshIcons();
-            setTimeout(function(){
-                button.classList.remove('success');
-                button.innerHTML = original;
-                refreshIcons();
-            }, 1500);
+    catch(err){
+
+        const temp =
+            document.createElement(
+                'textarea'
+            );
+
+
+        temp.value =
+            hasil;
+
+
+        temp.style.position =
+            'fixed';
+
+        temp.style.opacity =
+            '0';
+
+
+        document.body.appendChild(
+            temp
+        );
+
+
+        temp.focus();
+
+        temp.select();
+
+
+        try{
+
+            document.execCommand(
+                'copy'
+            );
+
+
+            showToast(
+                `✓ ${parsedList.length} HASIL BERHASIL DI-COPY`
+            );
+
         }
-    } else {
-        showToast('❌ GAGAL COPY HASIL');
+
+        catch(e){
+
+            showToast(
+                '❌ GAGAL COPY HASIL'
+            );
+
+        }
+
+
+        document.body.removeChild(
+            temp
+        );
+
     }
+
 }
+
+
+/* =========================================
+   PASTE
+========================================= */
 
 async function pasteText(){
+
     try{
-        const text = await navigator.clipboard.readText();
-        document.getElementById('dataInput').value = text;
+
+        const text =
+            await navigator
+            .clipboard
+            .readText();
+
+
+        document
+        .getElementById('dataInput')
+        .value = text;
+
+
         parseExcelData();
-        showToast('✓ DATA BERHASIL DI-PASTE');
-    }catch(err){
-        alert('Gagal paste otomatis.\n\nGunakan CTRL+V pada kolom teks.');
+
+
+        showToast(
+            '✓ DATA BERHASIL DI-PASTE'
+        );
+
     }
+
+    catch(err){
+
+        alert(
+            'Gagal paste otomatis.\n\n' +
+            'Gunakan CTRL+V pada kolom teks.'
+        );
+
+    }
+
 }
+
+
+/* =========================================
+   CLEAR
+========================================= */
 
 function clearAll(){
-    document.getElementById('dataInput').value = '';
+
+    document
+    .getElementById('dataInput')
+    .value = '';
+
+
     parsedList = [];
+
+
     renderTable();
-    showToast('✓ DATA DIBERSIHKAN');
+
+
+    showToast(
+        '✓ DATA DIBERSIHKAN'
+    );
+
 }
+
+
+/* =========================================
+   TOAST
+========================================= */
 
 let toastTimer;
+
+
 function showToast(message){
-    const toast = document.getElementById('toast');
-    toast.innerText = message;
-    toast.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 1800);
+
+    const toast =
+        document.getElementById(
+            'toast'
+        );
+
+
+    toast.innerText =
+        message;
+
+
+    toast.classList.add(
+        'show'
+    );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(() => {
+
+            toast.classList.remove(
+                'show'
+            );
+
+        },1800);
+
 }
 
-/* ============ INIT ============ */
-refreshIcons();
-parseExcelData();
+
+/* =========================================
+   INIT
+========================================= */
+
+window.onload = function(){
+
+    lucide.createIcons();
+
+    parseExcelData();
+
+};
+
+</script>
+
+<script>
+/* ================================================================
+   KODE TAB — INI SATU-SATUYA JAVASCRIPT BARU.
+   Semua fungsi dari kedua script asli di atas tidak diubah.
+================================================================ */
+function showTab(id, btn){
+    var panels = document.querySelectorAll('.tab-panel');
+    for(var i = 0; i < panels.length; i++){
+        panels[i].classList.remove('active');
+    }
+    document.getElementById(id).classList.add('active');
+    var btns = document.querySelectorAll('.tab-btn');
+    for(var j = 0; j < btns.length; j++){
+        btns[j].classList.remove('active');
+    }
+    if(btn){ btn.classList.add('active'); }
+}
 </script>
 </body>
 </html>
